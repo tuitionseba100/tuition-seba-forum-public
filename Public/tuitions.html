@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tuition Seba Forum</title>
+    <link rel="icon" type="image/x-icon" href="images/favicon.png">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #4a90e2;
+            --secondary-color: #5bc0de;
+            --accent-color: #5cb85c;
+            --dark-color: #2c3e50;
+            --light-color: #f4f7f9;
+        }
+
+        #whatsapp-floating {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        #whatsapp-floating .textcard {
+            background-color: white;
+            padding: 6px 12px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        #whatsapp-floating span {
+            font-size: 11px;
+            /* Reduced text size */
+            color: #333;
+        }
+
+        #whatsapp-floating .bold-text {
+            font-weight: bold;
+            /* Only "Chat with us" will be bold */
+        }
+
+        #whatsapp-floating img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            transition: transform 0.3s;
+        }
+
+        #whatsapp-floating img:hover {
+            transform: scale(1.1);
+        }
+
+        /* Navbar Logo Styling */
+        .navbar-brand img.logo {
+            width: 40px;
+            /* Adjust as needed for the size of the logo */
+            height: 40px;
+            border-radius: 50%;
+            /* Makes the logo circular */
+            margin-right: 10px;
+            /* Adds some space between the logo and the title */
+        }
+
+        /* Navbar Styling */
+        .navbar {
+            background-color: var(--primary-color);
+            box-shadow: 0 2px 15px rgba(74, 144, 226, 0.2);
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            color: white !important;
+        }
+
+        /* Change navbar text color to white */
+        .navbar-nav .nav-link {
+            color: white;
+            /* Set text color to white */
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: red;
+            /* Change color to red on hover */
+        }
+
+        /* Social media icons */
+        .navbar-nav .nav-link i {
+            font-size: 18px;
+            margin-left: 10px;
+            color: white;
+        }
+
+        .navbar-nav .nav-link i:hover {
+            color: #25d366;
+            /* WhatsApp green color for hover */
+        }
+
+        html,
+        body {
+            overflow-x: hidden;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--light-color);
+            color: #333;
+        }
+
+        /* Add spacing below the navbar to keep the search container below */
+        body {
+            padding-top: 20px;
+            /* Adjust this value based on the height of your navbar */
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <!-- Logo with circle class -->
+            <a class="navbar-brand" href="/index.html">
+                <img src="images/favicon.png" alt="Logo" class="logo">
+                <span class="d-none d-sm-inline">Tuition Seba Forum</span> <!-- Hidden on extra small devices -->
+                <span class="d-inline d-sm-none" style="font-size: 14px;">Tuition Seba Forum</span>
+                <!-- Smaller text for xs devices -->
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="/#">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="tuitions.html">Available Tuitions</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://wa.me/+88001891644064?text=আমার%20টিচার%20লাগবে"
+                            target="_blank">
+                            Find Tutor
+                        </a>
+
+                    </li>
+
+
+                    <!-- Social Media Icons -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://www.facebook.com/profile.php?id=100093108041447"
+                            target="_blank">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="whatsapp://send?phone=+8801540376020" target="_blank">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section id="available-tuitions" class="py-5">
+        <div class="container">
+            <!-- Filter Section -->
+            <div class="row">
+                <div class="col-12 col-md-3 mb-3 mb-md-0">
+                    <label for="genderFilter" class="form-label">Filter by Gender</label>
+                    <select class="form-select" id="genderFilter" onchange="applyFilters()">
+                        <option value="all">All</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                    </select>
+                </div>
+
+                <div class="col-12 col-md-3 mb-3 mb-md-0">
+                    <label for="searchBar" class="form-label">Search by tuition code</label>
+                    <input type="text" class="form-control" id="tuitionCodeSearch" placeholder="Enter tuition code"
+                        oninput="applyFilters()" />
+                </div>
+                <div class="col-12 col-md-3 mb-3 mb-md-0">
+                    <label for="searchBar" class="form-label">Search by location</label>
+                    <input type="text" class="form-control" id="locationSearch" placeholder="Enter location"
+                        oninput="applyFilters()" />
+                    <ul id="suggestionsList" class="list-group"
+                        style="display: none; max-height: 200px; overflow-y: auto;"></ul>
+                </div>
+
+
+
+                <div class="col-12 col-md-3 d-flex justify-content-start align-items-center">
+                    <button class="btn btn-primary" id="resetFiltersButton" onclick="resetFilters()">Reset
+                        Filters</button>
+                </div>
+            </div>
+            <div class="col-12 mt-3">
+                <p id="tuitionCountText" class="text-muted text-center">Showing 0 tuitions out of 0</p>
+            </div>
+            <div id="loadingText" class="text-center text-primary fw-semibold" style="display: none;">Loading
+                tuitions...</div>
+
+            <div class="row" id="tuitionCardContainer">
+                <!-- Tuition Cards will be dynamically populated -->
+            </div>
+        </div>
+    </section>
+
+    <!-- logo section -->
+    <div id="whatsapp-floating">
+        <div class="textcard">
+            <span class="bold-text">Need help? Chat with us</span>
+        </div>
+        <a href="whatsapp://send?phone=+8801540376020" target="_blank" title="Need Help? Chat Us">
+            <img src="images/wp-icon.png" alt="WhatsApp" />
+        </a>
+    </div>
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.1/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.1/SplitText.min.js"></script>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        let tuitions = [];
+
+        async function fetchTuitionData() {
+            const loadingText = document.getElementById('loadingText');
+
+            loadingText.style.display = 'block';
+
+            let tuitionData = [];
+
+            try {
+                const response = await fetch(`https://tuition-seba-backend.onrender.com/api/tuition/all`);
+                const data = await response.json();
+
+                tuitionData = data.filter(tuition => tuition.isPublish === true);
+
+            } catch (error) {
+                console.error("Error fetching tuition data:", error);
+            }
+
+            loadingText.style.display = 'none';
+            return tuitionData;
+        }
+
+
+        function resetFilters() {
+            document.getElementById('genderFilter').value = 'all';
+            document.getElementById('tuitionCodeSearch').value = '';
+            document.getElementById('locationSearch').value = '';
+            applyFilters();
+        }
+
+        let filteredTuitions = [];
+
+        const locations = [
+            'Katghor', 'Oxyzen', 'Still Mill Bazar', 'Bondartila', 'Freeport', 'Saltgola Crossing', 'Customs', 'Barek Building',
+            'Agrabad', 'Boropol', 'Halishohor', 'Dewanhat', 'Noya bazar', 'Madarbari', 'Lalkhan Bazar', 'Wasa',
+            'Dampara', 'Ak khan', 'Khulsi', 'Kajir Dewri', 'Alongkar', 'Andorkilla', 'Jamal khan', 'Panchlish',
+            'New Market', 'Bayezid', '2 No Gate', 'Sholosohor', 'Muradpur', 'Chakbazar', 'Baddarhat', 'Rahattarpul',
+            'Aturar Depo', 'Kaptai Rastahar Matha', 'Chandgao', 'Baluchora', 'Kalamia Bazar', 'Akbor Shah', 'City Gate'
+        ];
+
+        function applyFilters() {
+            const genderFilter = document.getElementById('genderFilter').value.toLowerCase();
+            const tuitionCodeQuery = document.getElementById('tuitionCodeSearch').value.toLowerCase();
+            const locationQuery = document.getElementById('locationSearch').value.toLowerCase();
+
+            const filteredLocations = locations.filter(location =>
+                location.toLowerCase().includes(locationQuery)
+            );
+
+            const suggestionsList = document.getElementById('suggestionsList');
+            suggestionsList.innerHTML = '';
+
+            if (locationQuery) {
+                if (filteredLocations.length > 0) {
+                    filteredLocations.forEach(location => {
+                        const listItem = document.createElement('li');
+                        listItem.classList.add('list-group-item', 'list-group-item-action');
+                        listItem.textContent = location;
+                        listItem.onclick = () => {
+                            document.getElementById('locationSearch').value = location;
+                            suggestionsList.style.display = 'none';
+                            applyFilters();
+                        };
+                        suggestionsList.appendChild(listItem);
+                    });
+                } else {
+                    const listItem = document.createElement('li');
+                    listItem.classList.add('list-group-item');
+                    listItem.textContent = 'No locations found';
+                    suggestionsList.appendChild(listItem);
+                }
+                suggestionsList.style.display = 'block';
+            } else {
+                suggestionsList.style.display = 'none';
+            }
+
+            filteredTuitions = tuitions.filter(tuition => {
+                let matchesGender = true;
+                let matchesTuitionCode = true;
+                let matchesLocation = true;
+
+                if (genderFilter !== 'all') {
+                    const wantedTeacher = tuition.wantedTeacher?.toLowerCase();
+                    if (!wantedTeacher) return false;
+
+                    const hasBothGenders =
+                        wantedTeacher.includes('male/female') ||
+                        wantedTeacher.includes('male/ female') ||
+                        wantedTeacher.includes('female/male') ||
+                        wantedTeacher.includes('female/ male');
+
+                    if (genderFilter === 'male') {
+                        matchesGender = wantedTeacher.startsWith('male') || hasBothGenders;
+                    } else if (genderFilter === 'female') {
+                        matchesGender = wantedTeacher.startsWith('female') || hasBothGenders;
+                    }
+                }
+
+                if (tuitionCodeQuery) {
+                    matchesTuitionCode = tuition.tuitionCode?.toLowerCase().includes(tuitionCodeQuery);
+                }
+
+                if (locationQuery) {
+                    matchesLocation = tuition.location?.toLowerCase().includes(locationQuery);
+                }
+
+                return matchesGender && matchesTuitionCode && matchesLocation;
+            });
+
+            renderTuitionCards();
+        }
+
+        document.addEventListener('click', function (event) {
+            const suggestionsList = document.getElementById('suggestionsList');
+            const locationSearch = document.getElementById('locationSearch');
+            if (!locationSearch.contains(event.target) && !suggestionsList.contains(event.target)) {
+                suggestionsList.style.display = 'none';
+            }
+        });
+
+        document.getElementById('locationSearch').addEventListener('blur', function () {
+            const suggestionsList = document.getElementById('suggestionsList');
+            setTimeout(() => {
+                suggestionsList.style.display = 'none';
+            }, 150);
+        });
+
+        document.getElementById('locationSearch').addEventListener('focus', function () {
+            const locationQuery = document.getElementById('locationSearch').value.toLowerCase();
+            if (locationQuery) {
+                applyFilters();
+            }
+        });
+
+        function renderTuitionCards() {
+            const container = document.getElementById('tuitionCardContainer');
+            container.innerHTML = '';
+
+            let row;
+            for (let i = 0; i < filteredTuitions.length; i++) {
+                if (i % 3 === 0) { // Start a new row every 3 cards for large screens
+                    row = document.createElement('div');
+                    row.className = 'row';
+                    container.appendChild(row);
+                }
+
+                const tuition = filteredTuitions[i];
+
+                const card = document.createElement('div');
+                card.className = 'col-lg-4 col-md-6 col-sm-12'; // 3 per row on large, 2 per row on medium, 1 per row on small
+                card.innerHTML = `
+        <div class="card h-100 shadow-sm border-0 rounded-lg overflow-hidden">
+            <div class="card-header bg-primary text-white py-3 text-center">
+                <h5 class="card-title mb-0">
+                    <i class="fas fa-chalkboard-teacher me-2"></i>
+                    Tuition Code: ${tuition.tuitionCode}
+                </h5>
+            </div>
+            <div class="card-body">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item d-flex align-items-center">
+                        <span class="d-flex align-items-center me-2 fw-semibold text-primary">
+                            <i class="fas fa-chalkboard-teacher me-2"></i>Wanted Teacher
+                        </span>
+                        <div class="border-start mx-2"></div>
+                        <span class="text-dark fw-semibold ms-auto">${tuition.wantedTeacher}</span>
+                    </li>
+                    <li class="list-group-item d-flex align-items-center">
+                        <span class="d-flex align-items-center me-2 fw-semibold text-primary">
+                            <i class="fas fa-user me-2"></i>Number of Students
+                        </span>
+                        <div class="border-start mx-2"></div>
+                        <span class="text-dark fw-semibold ms-auto">${tuition.student}</span>
+                    </li>
+                    <li class="list-group-item d-flex align-items-center">
+                        <span class="d-flex align-items-center me-2 fw-semibold text-primary">
+                            <i class="fas fa-graduation-cap me-2"></i>Class
+                        </span>
+                        <div class="border-start mx-2"></div>
+                        <span class="text-dark fw-semibold ms-auto">${tuition.class}</span>
+                    </li>
+                    <li class="list-group-item d-flex align-items-center">
+                        <span class="d-flex align-items-center me-2 fw-semibold text-primary">
+                            <i class="fas fa-book me-2"></i>Medium
+                        </span>
+                        <div class="border-start mx-2"></div>
+                        <span class="text-dark fw-semibold ms-auto">${tuition.medium}</span>
+                    </li>
+                    <li class="list-group-item d-flex align-items-center">
+                        <span class="d-flex align-items-center me-2 fw-semibold text-primary">
+                            <i class="fas fa-book me-2"></i>Subject
+                        </span>
+                        <div class="border-start mx-2"></div>
+                        <span class="text-dark fw-semibold ms-auto">${tuition.subject}</span>
+                    </li>
+                    <li class="list-group-item d-flex align-items-center">
+                        <span class="d-flex align-items-center me-2 fw-semibold text-primary">
+                            <i class="fas fa-calendar me-2"></i>Day
+                        </span>
+                        <div class="border-start mx-2"></div>
+                        <span class="text-dark fw-semibold ms-auto">${tuition.day}</span>
+                    </li>
+                    <li class="list-group-item d-flex align-items-center">
+                        <span class="d-flex align-items-center me-2 fw-semibold text-primary">
+                            <i class="fas fa-clock me-2"></i>Time
+                        </span>
+                        <div class="border-start mx-2"></div>
+                        <span class="text-dark fw-semibold ms-auto">${tuition.time}</span>
+                    </li>
+                    <li class="list-group-item d-flex align-items-center">
+                        <span class="d-flex align-items-center me-2 fw-semibold text-primary">
+                            <i class="fas fa-dollar-sign me-2"></i>Salary
+                        </span>
+                        <div class="border-start mx-2"></div>
+                        <span class="text-dark fw-semibold ms-auto">${tuition.salary}</span>
+                    </li>
+                    <li class="list-group-item d-flex align-items-center">
+                        <span class="d-flex align-items-center me-2 fw-semibold text-primary">
+                            <i class="fas fa-map-marker-alt me-2"></i>Location
+                        </span>
+                        <div class="border-start mx-2"></div>
+                        <span class="text-dark fw-semibold ms-auto">${tuition.location}</span>
+                    </li>
+                    <li class="list-group-item d-flex align-items-center">
+                        <span class="d-flex align-items-center me-2 fw-semibold text-primary">
+                            <i class="fas fa-calendar-check me-2"></i>Joining
+                        </span>
+                        <div class="border-start mx-2"></div>
+                        <span class="text-dark fw-semibold ms-auto">${tuition.joining}</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="card-footer bg-light text-center">
+                <button
+                    class="btn btn-primary btn-sm px-4 py-2 rounded-pill button-hover"
+                    onclick="redirectToWhatsApp('${tuition.tuitionCode}')"
+                >
+                    <i class="fas fa-paper-plane me-2"></i>Apply Now
+                </button>
+            </div>
+
+        </div>
+        `;
+                row.appendChild(card);
+            }
+            const tuitionCountText = document.getElementById('tuitionCountText');
+            tuitionCountText.innerHTML = `
+        Showing 
+        <span class="fw-bold text-success">${filteredTuitions.length}</span> 
+        tuitions out of 
+        <span class="fw-bold text-muted">${tuitions.length}</span>
+        `;
+        }
+
+        function redirectToWhatsApp(tuitionCode) {
+            const phoneNumber = '+8801540376020';
+            const tuitionDetails = tuitions.find(tuition => tuition.tuitionCode === tuitionCode);
+
+            if (tuitionDetails) {
+                const message = `
+                Tuition Code: ${tuitionDetails.tuitionCode}
+                Wanted Teacher: ${tuitionDetails.wantedTeacher}
+                Number of Students: ${tuitionDetails.student}
+                Class: ${tuitionDetails.class}
+                Medium: ${tuitionDetails.medium}
+                Subject: ${tuitionDetails.subject}
+                Day: ${tuitionDetails.day}
+                Time: ${tuitionDetails.time}
+                Salary: ${tuitionDetails.salary}
+                Location: ${tuitionDetails.location}
+                Joining: ${tuitionDetails.joining}
+
+                এই টিউশনটা (${tuitionDetails.tuitionCode}) কি এখনো আছে?`.trim();
+                console.log(message);
+                const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+                window.open(url, '_blank');
+            }
+        }
+
+
+        $(document).ready(async function () {
+
+
+            tuitions = await fetchTuitionData();
+            filteredTuitions = [...tuitions];
+            renderTuitionCards();
+            applyFilters();
+        });
+
+    </script>
+</body>
+
+</html>
