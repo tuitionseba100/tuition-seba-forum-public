@@ -502,12 +502,14 @@ Salary: ${tuitionDetails.salary}
 Location: ${tuitionDetails.location}
 Joining: ${tuitionDetails.joining}
 
-এই টিউশনটা (${tuitionDetails.tuitionCode}) কি এখনো আছে?`.trim();
+Visit our website: www.tuitionsebaforum.com
+Whatsapp: ${phoneNumber}`.trim();
 
                 const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
                 window.open(url, '_blank');
             }
         }
+
 
 
         $(document).ready(async function () {
