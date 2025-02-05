@@ -818,7 +818,8 @@
                 }
 
                 if (locationQuery) {
-                    matchesLocation = tuition.location?.toLowerCase().includes(locationQuery);
+                    matchesLocation = tuition.location?.toLowerCase().includes(locationQuery) ||
+                        tuition.area?.toLowerCase().includes(locationQuery);
                 }
 
                 return matchesGender && matchesTuitionCode && matchesLocation;
