@@ -333,7 +333,8 @@
                 }
 
                 if (locationQuery) {
-                    matchesLocation = tuition.location?.toLowerCase().includes(locationQuery);
+                    matchesLocation = tuition.location?.toLowerCase().includes(locationQuery) ||
+                        tuition.area?.toLowerCase().includes(locationQuery);
                 }
 
                 return matchesGender && matchesTuitionCode && matchesLocation;
@@ -487,7 +488,7 @@
         function redirectToWhatsApp(tuitionCode) {
             const phoneNumber = '+8801540376020';
             const tuitionDetails = tuitions.find(tuition => tuition.tuitionCode === tuitionCode);
-
+            const area = tuitionDetails.area ? tuitionDetails.area : '';
             if (tuitionDetails) {
                 const message = `
 Tuition Code: ${tuitionDetails.tuitionCode}
@@ -499,7 +500,7 @@ Subject: ${tuitionDetails.subject}
 Day: ${tuitionDetails.day}
 Time: ${tuitionDetails.time}
 Salary: ${tuitionDetails.salary}
-Location: ${tuitionDetails.location}
+Location: ${tuitionDetails.location}${area ? ', ' + area : ''}
 Joining: ${tuitionDetails.joining}
 
 Visit our website: www.tuitionsebaforum.com
