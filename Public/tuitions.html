@@ -239,7 +239,7 @@
             let tuitionData = [];
 
             try {
-                const response = await fetch(`https://tuition-seba-backend.onrender.com/api/tuition/all`);
+                const response = await fetch(`https://tuition-seba-backend-1.onrender.com/api/tuition/all`);
                 const data = await response.json();
 
                 tuitionData = data.filter(tuition => tuition.isPublish === true).reverse();;
