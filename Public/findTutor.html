@@ -157,10 +157,15 @@
         </div>
     </nav>
 
-    <section id="apply-form" class="py-5 mt-3">
+    <section id="apply-form" class="py-5 mt-3 mb-2">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-6">
+                    <div class="text-center mb-3">
+                        <p class="fw-bold text-primary">
+                            গৃহশিক্ষক/শিক্ষিকা খুঁজছেন? অনুগ্রহ করে নিচের ফর্মটি পূরণ করুন/ আমাদের কল করুন: 01891-64406
+                        </p>
+                    </div>
                     <div class="card shadow-lg border-0">
                         <div class="card-header ext-white text-center" style="background-color: var(--primary-color);">
                             <h5 class="mb-0 text-white">Find Tutor</h5>
@@ -168,32 +173,34 @@
                         <div class="card-body">
                             <form id="applyForm" novalidate>
                                 <div class="mb-3">
-                                    <label for="name" class="form-label" style="font-weight: bold;">আপনার নাম
-                                        কি?</label>
+                                    <label for="name" class="form-label" style="font-weight: bold;">অনুগ্রহ করে আপনার
+                                        নাম লিখুন</label>
                                     <input type="text" class="form-control" id="name" required pattern="[A-Za-z\s]+"
                                         title="Only letters and spaces are allowed">
                                     <div class="invalid-feedback">অনুগ্রহ করে আপনার নামটি লিখুন।</div>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="phone" class="form-label" style="font-weight: bold;">আপনার ফোন
-                                        নম্বর?</label>
+                                    <label for="phone" class="form-label" style="font-weight: bold;">আপনার সচল মোবাইল
+                                        নাম্বার লিখুন
+                                    </label>
                                     <input type="tel" class="form-control" id="phone" required
                                         title="ফোন নম্বরটি বাংলাদেশে বৈধ হতে হবে।">
-                                    <div class="invalid-feedback">অনুগ্রহ করে একটি বৈধ বাংলাদেশী ফোন নম্বর প্রদান করুন।
+                                    <div class="invalid-feedback">অনুগ্রহ করে একটি বৈধ বাংলাদেশী ফোন নাম্বার লিখুন।
                                     </div>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="address" class="form-label" style="font-weight: bold;">আপনার পুরো
-                                        ঠিকানা?</label>
+                                    <label for="address" class="form-label" style="font-weight: bold;">আপনার বাসার
+                                        ঠিকানা লিখুন
+                                    </label>
                                     <input type="text" class="form-control" id="address" required>
-                                    <div class="invalid-feedback">অনুগ্রহ করে আপনার ঠিকানাটি লিখুন।</div>
+                                    <div class="invalid-feedback">অনুগ্রহ করে আপনার বাসার ঠিকানাটি লিখুন।</div>
                                 </div>
                                 <div class="mb-3">
                                     <label for="studentClass" class="form-label" style="font-weight: bold;">স্টুডেন্ট
                                         কোন ক্লাসে পড়ে?</label>
                                     <input type="text" class="form-control" id="studentClass" required
                                         title="ক্লাসের জন্য একটি বৈধ মান প্রদান করুন">
-                                    <div class="invalid-feedback">আপনার স্টুডেন্টের ক্লাস প্রদান করতে হবে।</div>
+                                    <div class="invalid-feedback">আপনার স্টুডেন্টের ক্লাস লিখুন।</div>
                                 </div>
                                 <div class="mb-3">
                                     <label for="teacherGender" class="form-label" style="font-weight: bold;">ছেলে শিক্ষক
@@ -208,7 +215,7 @@
                                 </div>
                                 <div class="mb-3 mt-2">
                                     <label for="characteristics" class="form-label" style="font-weight: bold;">কেমন
-                                        শিক্ষক চান নিচে লিখুন সংক্ষেপে</label>
+                                        শিক্ষক খুঁজছেন সংক্ষেপে নিচে লিখুন</label>
                                     <textarea class="form-control" id="characteristics" rows="3"
                                         maxlength="500"></textarea>
                                 </div>
@@ -251,6 +258,13 @@
             </div>
         </div>
     </div>
+
+    <footer class="bg-white text-center text-dark py-3 mt-5">
+        <div class="container">
+            Tuition Seba Forum &copy; All Rights Reserved
+        </div>
+    </footer>
+
 
     <!-- logo section -->
     <div id="whatsapp-floating">
