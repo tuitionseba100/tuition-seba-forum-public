@@ -481,6 +481,58 @@
         </div>
     </div>
 
+    <!-- Update Link (Bold Text) -->
+    <div class="text-center py-2 mt-5">
+        <div class="container">
+            <p class="mb-0 fs-6 fw-bold">
+                আপনার আবেদনকৃত টিউশনগুলোর আপডেট জানতে -
+                <a href="#" class="text-decoration-underline" data-bs-toggle="modal"
+                    data-bs-target="#appliedTuitionsModal">
+                    এখানে ক্লিক করুন
+                </a>
+            </p>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="appliedTuitionsModal" tabindex="-1" aria-labelledby="appliedTuitionsModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-black fw-bolder" id="appliedTuitionsModalLabel">আবেদনকৃত টিউশন আপডেট
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Phone Search Input -->
+                    <div class="mb-3">
+                        <label for="phoneSearch" class="form-label fw-bold">ফোন নম্বর লিখুন:</label>
+                        <input type="text" class="form-control" id="phoneSearch"
+                            placeholder="যে নম্বর দিয়ে আবেদন করেছিলেন সেটি লিখুন">
+                    </div>
+
+                    <!-- Table -->
+                    <div class="table-responsive" style="max-height: 300px; overflow-y: auto;">
+                        <table class="table table-bordered table-hover text-center align-middle">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>SL</th>
+                                    <th>Applied At</th>
+                                    <th>Tuition Code</th>
+                                    <th>Status</th>
+                                    <th>Comment</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tuitionTableBody">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <section id="available-tuitions" class="py-5">
         <div class="container">
             <h2 class="text-center text-primary h-2 fw-bold mb-5">Available Tuitions</h2>
@@ -791,7 +843,6 @@
     <script>
         let tuitions = [];
 
-
         async function fetchTuitionData() {
 
             let tuitionData = [];
@@ -808,7 +859,6 @@
 
             return tuitionData;
         }
-
 
         function resetFilters() {
             document.getElementById('genderFilter').value = 'all';
@@ -1182,7 +1232,48 @@ Joining: ${tuitionDetails.joining}
             window.open(url, '_blank');
         }
         }
+        
 */
+        let allApllications = [];
+        document.getElementById('phoneSearch').addEventListener('input', function () {
+            const phoneNumber = this.value.trim();
+            const filteredData = allApllications.filter(item => item.phone.trim() === phoneNumber);
+
+            const tableBody = document.getElementById('tuitionTableBody');
+
+            tableBody.innerHTML = '';
+
+            if (filteredData.length > 0) {
+                filteredData.forEach((item, index) => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                <td>${index + 1}</td>
+                <td>${formatDate(item.appliedAt)}</td>
+                <td>${item.tuitionCode}</td>
+                <td>${item.status}</td>
+                <td>${item.commentForTeacher || ''}</td>
+            `;
+                    tableBody.appendChild(row);
+                });
+            } else {
+                const noResultsRow = document.createElement('tr');
+                noResultsRow.innerHTML = `<td colspan="5" style="text-align: center;">No applications found</td>`;
+                tableBody.appendChild(noResultsRow);
+            }
+        });
+
+        const formatDate = (dateString) => {
+            const date = new Date(dateString);
+
+            const optionsDate = { day: '2-digit', month: 'long', year: 'numeric', timeZone: 'UTC' };
+            const optionsTime = { hour: '2-digit', minute: '2-digit', hour12: true, timeZone: 'UTC' };
+
+            const formattedDate = new Intl.DateTimeFormat('en-GB', optionsDate).format(date);
+            const formattedTime = new Intl.DateTimeFormat('en-GB', optionsTime).format(date);
+
+            return `${formattedDate} || ${formattedTime}`;
+        };
+
         function scrollToSection(sectionId) {
             const section = document.querySelector(sectionId);
             if (section) {
@@ -1203,6 +1294,15 @@ Joining: ${tuitionDetails.joining}
                     1024: { items: 3 }
                 }
             });
+
+            fetch('https://tuition-seba-backend-1.onrender.com/api/tuitionApply/getTuitionStatuses')
+                .then(response => response.json())
+                .then(data => {
+                    allApllications = data;
+                })
+                .catch(error => {
+                    console.error('Error fetching tuition data:', error);
+                });
 
             tuitions = await fetchTuitionData();
             filteredTuitions = [...tuitions];
