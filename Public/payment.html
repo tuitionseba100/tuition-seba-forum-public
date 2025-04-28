@@ -36,7 +36,37 @@
 
         body {
             padding-top: 20px;
+        }
 
+        /* Toggle button styles */
+        .toggle-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .toggle-btn {
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            padding: 10px 20px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .toggle-btn:first-child {
+            border-top-left-radius: 30px;
+            border-bottom-left-radius: 30px;
+        }
+
+        .toggle-btn:last-child {
+            border-top-right-radius: 30px;
+            border-bottom-right-radius: 30px;
+        }
+
+        .toggle-btn.active {
+            background-color: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
         }
     </style>
 </head>
@@ -89,94 +119,226 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-6">
-                    <div class="text-center mb-3">
-                        <p class="fw-bold text-primary">
-                            রিফান্ডের জন্য আবেদন করতে নিচের ফর্মটি পূরণ করুন।<br>
-                            অথবা আমাদের কল করুন: 01540376020
-                        </p>
-                        <p class="fw-bold text-primary">
-                            রিফান্ডের শর্তাবলি:
-                            <button type="button" class="btn btn-sm btn-outline-info ms-2" data-bs-toggle="modal"
-                                data-bs-target="#refundTermsModal" title="রিফান্ডের শর্তাবলি">
-                                <i class="bi bi-info-circle"></i>
-                            </button>
-                        </p>
-
+                    <!-- Toggle buttons -->
+                    <div class="toggle-container">
+                        <button id="makePaymentBtn" class="toggle-btn active">Make a Payment</button>
+                        <button id="requestRefundBtn" class="toggle-btn">Request for Refund</button>
                     </div>
-                    <div class="card shadow-lg border-0">
-                        <div class="card-header ext-white text-center" style="background-color: var(--primary-color);">
-                            <h5 class="mb-0 text-white">Request refund</h5>
+
+                    <!-- Payment Form Section -->
+                    <div id="paymentFormSection">
+                        <div class="text-center mb-3">
+                            <p class="fw-bold text-primary mb-0">
+                                টিউশন সেবা ফোরাম-এ পেমেন্ট করতে নিচের ফর্মটি পূরণ করুন।<br>
+                                অথবা আমাদের কল করুন: 01540376020
+                            </p>
+                            <div class="d-flex justify-content-center align-items-center">
+                                <p class="fw-bold text-primary mb-0 me-3">
+                                    পেমেন্টের শর্তাবলি:
+                                    <button type="button" class="btn btn-sm btn-outline-info ms-2"
+                                        data-bs-toggle="modal" data-bs-target="#paymentTermsModal"
+                                        title="পেমেন্টের শর্তাবলি">
+                                        <i class="bi bi-info-circle"></i>
+                                    </button>
+                                </p>
+                                <span class="separator mx-3">|</span>
+                                <p class="fw-bold text-primary mb-0 ms-3">
+                                    রিফান্ডের শর্তাবলি:
+                                    <button type="button" class="btn btn-sm btn-outline-info ms-2"
+                                        data-bs-toggle="modal" data-bs-target="#refundTermsModal"
+                                        title="রিফান্ডের শর্তাবলি">
+                                        <i class="bi bi-info-circle"></i>
+                                    </button>
+                                </p>
+                            </div>
                         </div>
-                        <div class="card-body">
-                            <form id="applyForm" novalidate>
-                                <div class="mb-3">
-                                    <label for="tuitionCode" class="form-label" style="font-weight: bold;">Type Tuition
-                                        Code</label>
-                                    <input type="text" class="form-control" id="tuitionCode" required>
-                                    <div class="invalid-feedback">দয়া করে একটি বৈধ টিউশন কোড লিখুন।</div>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="paymentMethod" class="form-label" style="font-weight: bold;">Choose
-                                        Bkash/ Nagad</label>
-                                    <select class="form-select" id="paymentMethod" required>
-                                        <option value="">Select payment number type</option>
-                                        <option value="bkash">Bkash Personal</option>
-                                        <option value="nagad">Nagad Personal</option>
-                                    </select>
-                                    <div class="invalid-feedback">দয়া করে একটি পেমেন্ট পদ্ধতি নির্বাচন করুন।</div>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="paymentNumber" class="form-label" style="font-weight: bold;">Type Number
-                                        Bkash/Nagad</label>
-                                    <input type="tel" class="form-control" id="paymentNumber" required>
-                                    <div class="invalid-feedback">দয়া করে বিকাশ/নগদ নম্বরটি সঠিকভাবে লিখুন।</div>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="returnAmount" class="form-label" style="font-weight: bold;">Return
-                                        Amount</label>
-                                    <input type="number" class="form-control" id="returnAmount" required>
-                                    <div class="invalid-feedback">দয়া করে ফেরত পরিমাণ লিখুন।</div>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="name" class="form-label" style="font-weight: bold;">Type Your
-                                        Name</label>
-                                    <input type="text" class="form-control" id="name" pattern="[A-Za-z\s]+"
-                                        title="শুধুমাত্র অক্ষর এবং স্পেস ব্যবহার করুন" required>
-                                    <div class="invalid-feedback">দয়া করে আপনার নাম লিখুন।</div>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="contact" class="form-label" style="font-weight: bold;">Type Your Contact
-                                        Number/ Whatsapp Number</label>
-                                    <input type="tel" class="form-control" id="contact" required
-                                        title="দয়া করে একটি বৈধ ফোন নম্বর লিখুন।">
-                                    <div class="invalid-feedback">দয়া করে একটি বৈধ যোগাযোগ নম্বর লিখুন।</div>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="note" class="form-label" style="font-weight: bold;">Note</label>
-                                    <textarea class="form-control" id="note" rows="3" maxlength="500"></textarea>
-                                </div>
-                                <div class="mb-3">
-                                    <div class="form-check mb-3">
-                                        <input class="form-check-input" type="checkbox" id="agreeTerms">
-                                        <label class="form-check-label" for="agreeTerms">
-                                            I agree with the <a href="#" data-bs-toggle="modal"
-                                                data-bs-target="#refundTermsModal">refund terms and conditions</a>.
-                                        </label>
-                                        <div id="termsError" class="text-danger d-none mt-1">You must agree with the
-                                            refund terms and conditions.</div>
+
+                        <div class="card shadow-lg border-0">
+                            <div class="card-header text-white text-center"
+                                style="background-color: var(--primary-color);">
+                                <h5 class="mb-0 text-white">Make Payment</h5>
+                            </div>
+                            <div class="card-body">
+                                <form id="paymentForm" novalidate>
+                                    <div class="mb-3">
+                                        <label for="paymentTuitionCode" class="form-label"
+                                            style="font-weight: bold;">Type Tuition
+                                            Code</label>
+                                        <input type="text" class="form-control" id="paymentTuitionCode" required>
+                                        <div class="invalid-feedback">দয়া করে একটি বৈধ টিউশন কোড লিখুন।</div>
                                     </div>
-
-                                </div>
-                            </form>
-                        </div>
-                        <div class="card-footer text-center d-flex justify-content-between">
-
-                            <button type="reset" class="btn btn-secondary" form="applyForm"
-                                onclick="resetForm()">Reset</button>
-                            <button type="submit" class="btn btn-success" form="applyForm">Apply</button>
+                                    <div class="mb-3">
+                                        <label for="paymentType" class="form-label" style="font-weight: bold;">Choose
+                                            Payment Method</label>
+                                        <select class="form-select" id="paymentType" required>
+                                            <option value="">Select payment method</option>
+                                            <option value="bkash">Bkash personal</option>
+                                            <option value="nagad">Nagad personal</option>
+                                            <option value="cash">Cash</option>
+                                        </select>
+                                        <div class="invalid-feedback">দয়া করে একটি পেমেন্ট পদ্ধতি নির্বাচন করুন।</div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="paymentNumber" class="form-label" style="font-weight: bold;">Type
+                                            Number
+                                            Bkash/Nagad</label>
+                                        <input type="tel" class="form-control" id="paymentNumber">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="transactionId" class="form-label"
+                                            style="font-weight: bold;">Transaction ID</label>
+                                        <input type="text" class="form-control" id="transactionId">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="paymentAmount" class="form-label" style="font-weight: bold;">Payment
+                                            Amount</label>
+                                        <input type="number" class="form-control" id="paymentAmount" required>
+                                        <div class="invalid-feedback">দয়া করে পেমেন্ট পরিমাণ লিখুন।</div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="paymentName" class="form-label" style="font-weight: bold;">Type Your
+                                            Name</label>
+                                        <input type="text" class="form-control" id="paymentName" pattern="[A-Za-z\s]+"
+                                            title="শুধুমাত্র অক্ষর এবং স্পেস ব্যবহার করুন" required>
+                                        <div class="invalid-feedback">দয়া করে আপনার নাম লিখুন।</div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="paymentContact" class="form-label" style="font-weight: bold;">Type
+                                            Your Contact
+                                            Number/ Whatsapp Number</label>
+                                        <input type="tel" class="form-control" id="paymentContact" required
+                                            title="দয়া করে একটি বৈধ ফোন নম্বর লিখুন।">
+                                        <div class="invalid-feedback">দয়া করে একটি বৈধ যোগাযোগ নম্বর লিখুন।</div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="paymentNote" class="form-label"
+                                            style="font-weight: bold;">Note</label>
+                                        <textarea class="form-control" id="paymentNote" rows="3"
+                                            maxlength="500"></textarea>
+                                    </div>
+                                    <div class="mb-3">
+                                        <div class="form-check mb-3">
+                                            <input class="form-check-input" type="checkbox" id="agreePaymentTerms2">
+                                            <label class="form-check-label" for="agreePaymentTerms2">
+                                                I agree with the payment <a href="#" data-bs-toggle="modal"
+                                                    data-bs-target="#paymentTermsModal">terms and conditions</a>.
+                                            </label>
+                                            <div id="paymentTermsError2" class="text-danger d-none mt-1">You must agree
+                                                with the payment terms and conditions.</div>
+                                        </div>
+                                        <div class="form-check mb-3">
+                                            <input class="form-check-input" type="checkbox" id="agreePaymentTerms">
+                                            <label class="form-check-label" for="agreePaymentTerms">
+                                                I agree with the refund <a href="#" data-bs-toggle="modal"
+                                                    data-bs-target="#refundTermsModal">terms and conditions</a>.
+                                            </label>
+                                            <div id="paymentTermsError" class="text-danger d-none mt-1">You must agree
+                                                with the refund
+                                                terms and conditions.</div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="card-footer text-center d-flex justify-content-between">
+                                <button type="reset" class="btn btn-secondary" form="paymentForm"
+                                    onclick="resetPaymentForm()">Reset</button>
+                                <button type="submit" class="btn btn-success" form="paymentForm">Submit Payment</button>
+                            </div>
                         </div>
                     </div>
 
+                    <!-- Refund Form Section -->
+                    <div id="refundFormSection" style="display: none;">
+                        <div class="text-center mb-3">
+                            <p class="fw-bold text-primary">
+                                রিফান্ডের জন্য আবেদন করতে নিচের ফর্মটি পূরণ করুন।<br>
+                                অথবা আমাদের কল করুন: 01540376020
+                            </p>
+                            <p class="fw-bold text-primary">
+                                রিফান্ডের শর্তাবলি:
+                                <button type="button" class="btn btn-sm btn-outline-info ms-2" data-bs-toggle="modal"
+                                    data-bs-target="#refundTermsModal" title="রিফান্ডের শর্তাবলি">
+                                    <i class="bi bi-info-circle"></i>
+                                </button>
+                            </p>
+                        </div>
+                        <div class="card shadow-lg border-0">
+                            <div class="card-header text-white text-center"
+                                style="background-color: var(--primary-color);">
+                                <h5 class="mb-0 text-white">Request refund</h5>
+                            </div>
+                            <div class="card-body">
+                                <form id="applyForm" novalidate>
+                                    <div class="mb-3">
+                                        <label for="tuitionCode" class="form-label" style="font-weight: bold;">Type
+                                            Tuition
+                                            Code</label>
+                                        <input type="text" class="form-control" id="tuitionCode" required>
+                                        <div class="invalid-feedback">দয়া করে একটি বৈধ টিউশন কোড লিখুন।</div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="paymentMethod" class="form-label" style="font-weight: bold;">Choose
+                                            Bkash/ Nagad</label>
+                                        <select class="form-select" id="paymentMethod" required>
+                                            <option value="">Select payment number type</option>
+                                            <option value="bkash">Bkash Personal</option>
+                                            <option value="nagad">Nagad Personal</option>
+                                            <option value="cash">Cash</option>
+                                        </select>
+                                        <div class="invalid-feedback">দয়া করে একটি পেমেন্ট পদ্ধতি নির্বাচন করুন।</div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="paymentNumber" class="form-label" style="font-weight: bold;">Type
+                                            Number
+                                            Bkash/Nagad</label>
+                                        <input type="tel" class="form-control" id="paymentNumber" required>
+                                        <div class="invalid-feedback">দয়া করে বিকাশ/নগদ নম্বরটি সঠিকভাবে লিখুন।</div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="returnAmount" class="form-label" style="font-weight: bold;">Return
+                                            Amount</label>
+                                        <input type="number" class="form-control" id="returnAmount" required>
+                                        <div class="invalid-feedback">দয়া করে ফেরত পরিমাণ লিখুন।</div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="name" class="form-label" style="font-weight: bold;">Type Your
+                                            Name</label>
+                                        <input type="text" class="form-control" id="name" pattern="[A-Za-z\s]+"
+                                            title="শুধুমাত্র অক্ষর এবং স্পেস ব্যবহার করুন" required>
+                                        <div class="invalid-feedback">দয়া করে আপনার নাম লিখুন।</div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="contact" class="form-label" style="font-weight: bold;">Type Your
+                                            Contact
+                                            Number/ Whatsapp Number</label>
+                                        <input type="tel" class="form-control" id="contact" required
+                                            title="দয়া করে একটি বৈধ ফোন নম্বর লিখুন।">
+                                        <div class="invalid-feedback">দয়া করে একটি বৈধ যোগাযোগ নম্বর লিখুন।</div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="note" class="form-label" style="font-weight: bold;">Note</label>
+                                        <textarea class="form-control" id="note" rows="3" maxlength="500"></textarea>
+                                    </div>
+                                    <div class="mb-3">
+                                        <div class="form-check mb-3">
+                                            <input class="form-check-input" type="checkbox" id="agreeTerms">
+                                            <label class="form-check-label" for="agreeTerms">
+                                                I agree with the <a href="#" data-bs-toggle="modal"
+                                                    data-bs-target="#refundTermsModal">refund terms and conditions</a>.
+                                            </label>
+                                            <div id="termsError" class="text-danger d-none mt-1">You must agree with the
+                                                refund terms and conditions.</div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="card-footer text-center d-flex justify-content-between">
+                                <button type="reset" class="btn btn-secondary" form="applyForm"
+                                    onclick="resetForm()">Reset</button>
+                                <button type="submit" class="btn btn-success" form="applyForm">Apply</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -231,32 +393,84 @@
                 <div class="modal-body px-5 py-4 text-secondary" style="font-size: 1.1rem; line-height: 1.8;">
                     <h6 class="fw-semibold mb-3">ফি রিটার্ণ পলিসি:</h6>
                     <ul class="list-unstyled">
-                        <li class="mb-2"><strong>১.</strong> অভিভাবক থেকে টিউশন কনফার্ম হওয়ার পরে এক সপ্তাহ পড়ানোর পর
-                            মানা করে দিলে মিডিয়া ফি এর <strong>১০০%</strong> ফেরত পাবেন।</li>
-                        <li class="mb-2"><strong>২.</strong> অভিভাবক থেকে টিউশন কনফার্ম হওয়ার পর দুই সপ্তাহ পড়ানোর পর
-                            মানা করে দিলে মিডিয়া ফি এর <strong>৭৫%</strong> ফেরত পাবেন।</li>
-                        <li class="mb-2"><strong>৩.</strong> অভিভাবক থেকে টিউশন কনফার্ম হওয়ার পর এক মাস পড়িয়েছেন। এক
-                            মাসের বেতন দিয়ে মানা করে দিলে মিডিয়া ফি এর <strong>৫০%</strong> ফেরত পাবেন।</li>
+                        <li class="mb-2"><strong>১.</strong> অভিভাবক থেকে টিউশন কনফার্ম হওয়ার পরে এক সপ্তাহ পড়ানোর পর
+                            মানা করে দিলে মিডিয়া ফি এর <strong>১০০%</strong> ফেরত পাবেন।</li>
+                        <li class="mb-2"><strong>২.</strong> অভিভাবক থেকে টিউশন কনফার্ম হওয়ার পর দুই সপ্তাহ পড়ানোর পর
+                            মানা করে দিলে মিডিয়া ফি এর <strong>৭৫%</strong> ফেরত পাবেন।</li>
+                        <li class="mb-2"><strong>৩.</strong> অভিভাবক থেকে টিউশন কনফার্ম হওয়ার পর এক মাস পড়িয়েছেন। এক
+                            মাসের বেতন দিয়ে মানা করে দিলে মিডিয়া ফি এর <strong>৫০%</strong> ফেরত পাবেন।</li>
                         <li class="mb-2"><strong>৪.</strong> আমার কোনো ভুল/কথার সাথে মিল না থাকলে <strong>পুরো টাকা
-                                ফেরত</strong>। বিশেষ কারণ ছাড়া আপনি ছেড়ে দিলে পাবেন না। তবে যদি প্রাসঙ্গিক কোনো কারণ
-                            দেখাতে পারেন সে বিষয়ে কথা বলে উভয় পক্ষ থেকে সিদ্ধান্ত নিবো। কোনো কিছু না বুঝতে পারলে আরও
+                                ফেরত</strong>। বিশেষ কারণ ছাড়া আপনি ছেড়ে দিলে পাবেন না। তবে যদি প্রাসঙ্গিক কোনো কারণ
+                            দেখাতে পারেন সে বিষয়ে কথা বলে উভয় পক্ষ থেকে সিদ্ধান্ত নিবো। কোনো কিছু না বুঝতে পারলে আরও
                             বিস্তারিত আলোচনার জন্য প্রশ্ন করুন আমাকে।</li>
-                        <li class="mb-2"><strong>৫.</strong> প্রথম মাসের পর টিউশন ধরে রাখা আপনার দায়িত্বশীলতা এবং
-                            পারফরম্যান্সের নির্ভর করে। তাই প্রথম মাসের বেতন পাওয়ার পর আর কোন অভিযোগ গ্রহণযোগ্য হবে না।
+                        <li class="mb-2"><strong>৫.</strong> প্রথম মাসের পর টিউশন ধরে রাখা আপনার দায়িত্বশীলতা এবং
+                            পারফরম্যান্সের নির্ভর করে। তাই প্রথম মাসের বেতন পাওয়ার পর আর কোন অভিযোগ গ্রহণযোগ্য হবে না।
                         </li>
-                        <li class="mb-2"><strong>৬.</strong> টিউশন বাতিল হলে যেদিন বাতিল হয়েছে সেদিন থেকে ১৫ দিনের মধ্যে
-                            অন্য টিউশন রিপ্লেস দেওয়া হবে। ১৫ দিনের মধ্যে রিপ্লেস না হলে পরবর্তী ৭ দিনের মধ্যে রিফান্ড
+                        <li class="mb-2"><strong>৬.</strong> টিউশন বাতিল হলে যেদিন বাতিল হয়েছে সেদিন থেকে ১৫ দিনের
+                            মধ্যে
+                            অন্য টিউশন রিপ্লেস দেওয়া হবে। ১৫ দিনের মধ্যে রিপ্লেস না হলে পরবর্তী ৭ দিনের মধ্যে রিফান্ড
                             পলিসি
-                            অনুযায়ী আপনার সার্ভিস চার্জ রিফান্ড দেওয়া হবে।</li>
-                        <li class="mb-2"><strong>৭.</strong> আপনি টিউশনে অনিয়মিত, যত সময় পড়ানোর কথা তত সময় দিচ্ছেন না
-                            সেক্ষেত্রে টিউশন চলে গেলে কোন সার্ভিস চার্জ ফেরত দেওয়া হবে না।</li>
-                        <li class="mb-2"><strong>৮.</strong> আপনার ব্যক্তিগত কারণে টিউশন চলে গেলে অথবা ছেড়ে দিলে কোন
-                            সার্ভিস চার্জ ফেরত দেওয়া হবে না।</li>
-                        <li class="mb-2"><strong>৯.</strong> মেয়ে টিচারদের ক্ষেত্রে গার্ডিয়ানের বাসায় প্রথম দিন যাওয়ার
-                            সময় অবশ্যই একজন পুরুষ গার্ডিয়ান সাথে নিয়ে যাবেন।</li>
+                            অনুযায়ী আপনার সার্ভিস চার্জ রিফান্ড দেওয়া হবে।</li>
+                        <li class="mb-2"><strong>৭.</strong> আপনি টিউশনে অনিয়মিত, যত সময় পড়ানোর কথা তত সময় দিচ্ছেন
+                            না
+                            সেক্ষেত্রে টিউশন চলে গেলে কোন সার্ভিস চার্জ ফেরত দেওয়া হবে না।</li>
+                        <li class="mb-2"><strong>৮.</strong> আপনার ব্যক্তিগত কারণে টিউশন চলে গেলে অথবা ছেড়ে দিলে কোন
+                            সার্ভিস চার্জ ফেরত দেওয়া হবে না।</li>
+                        <li class="mb-2"><strong>৯.</strong> মেয়ে টিচারদের ক্ষেত্রে গার্ডিয়ানের বাসায় প্রথম দিন
+                            যাওয়ার
+                            সময় অবশ্যই একজন পুরুষ গার্ডিয়ান সাথে নিয়ে যাবেন।</li>
                     </ul>
                     <div class="alert alert-info mt-4 border-0 shadow-sm rounded-4">
-                        ❓ <em>কোনো কিছু না বুঝলে বা ব্যাখ্যার প্রয়োজন হলে নির্দ্বিধায় যোগাযোগ করুন।</em>
+                        ❓ <em>কোনো কিছু না বুঝলে বা ব্যাখ্যার প্রয়োজন হলে নির্দ্বিধায় যোগাযোগ করুন।</em>
+                    </div>
+                </div>
+
+
+                <!-- Footer -->
+                <div class="modal-footer bg-light p-3 justify-content-end border-top">
+                    <button type="button" class="btn btn-dark px-4 py-2 rounded-pill" data-bs-dismiss="modal">
+                        <i class="bi bi-x-circle me-1"></i> Close
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Stylish Refund Terms Modal -->
+    <div class="modal fade" id="paymentTermsModal" tabindex="-1" aria-labelledby="paymentTermsModal" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content border-0 rounded-5 shadow-lg overflow-hidden animate__animated animate__fadeIn">
+
+                <!-- Elegant Gradient Header -->
+                <div class="modal-header text-white p-4"
+                    style="background: linear-gradient(135deg, #6f42c1, #0d6efd); border-bottom: none;">
+                    <h5 class="modal-title fw-bold fs-4" id="refundTermsLabel">📜 Payment Terms and Condition</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+
+                <!-- Modal Body -->
+                <div class="modal-body px-5 py-4 text-secondary" style="font-size: 1.1rem; line-height: 1.8;">
+                    <h6 class="fw-semibold mb-3">Payment policy:</h6>
+                    <ul class="list-unstyled">
+                        <li class="mb-2">আসসালামু আলাইকুম, আমাদের মিডিয়া ফি সিস্টেম এমনভাবে করেছি যাতে আপনার এবং
+                            আমার উভয়ের সুবিধা হয়। যেমনঃ আমাদের মিডিয়া ফি ৬০%। এর ৩০% অগ্রিম দিতে হবে এবং ৩০% বেতন
+                            পেয়ে দিয়ে দিবেন। ৩০% অগ্রিম আপনি বিকাশে/নগদে/রকেটে বা অফিসে এসে দিতে পারবেন। যদি অফিসে
+                            আসতে পারেন তাহলে খুবই ভালো হবে।</li>
+                        <li class="mb-2">অগ্রিম ৩০% দিতে না চাইলে আমরা আসলে দুঃখিত। বিগত চারবছরে অগ্রিম না নিয়ে কিছু
+                            কিছু দেয়ার চেষ্টা করেছি। তারা নাম্বার পাওয়ার পর অনেক অযুহাত দেয় যা অগ্রহণযোগ্য এই যেমন কেউ
+                            কেউ বলে ভুলে গেছিলাম, কল দিতে পারি নাই, পড়াবো না আব্বু আম্মু মানা করে, এমন নানা অযুহাত৷ এবং
+                            এগুলো তারা জানায় না পর্যন্ত। আর আপনি ৩০% যা অগ্রিম দিবেন তা যদি টিউশন না হয় ক্যান্সেল হয়
+                            আপনি ক্লেইম করার ২৪ ঘন্টার মধ্যে টাকা পেয়ে যাবেন৷ আজ পর্যন্ত টাকা রিটার্ন দেই নাই ঘুরাইছি
+                            এমন কোনো অভিযোগ নাই।
+                        </li>
+                        <li class="mb-2">আমাদের কেন অগ্রিম দিবেন? আমরা বিগত চার বছর সততার সাথে লেনদেন করতেছি, আমাদের আছে
+                            ট্রেড লাইসেন্স, আমাদের আছে অফিস, আমাদের আছে ওয়েবসাইট। এরপরেও আপনি যদি ভরসা করতে না পারেন
+                            আমরাও আপনাকে ভরসা করতে পারছি না। আবারো আন্তরিকতার সাথে ধন্যবাদ</li>
+
+                    </ul>
+                    <div class="alert alert-info mt-4 border-0 shadow-sm rounded-4">
+                        ❓ <em>কোনো কিছু না বুঝলে বা ব্যাখ্যার প্রয়োজন হলে নির্দ্বিধায় যোগাযোগ করুন।</em>
                     </div>
                 </div>
 
@@ -289,12 +503,32 @@
     <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script>
+        // Toggle between payment and refund forms
+        document.getElementById('makePaymentBtn').addEventListener('click', function () {
+            document.getElementById('paymentFormSection').style.display = 'block';
+            document.getElementById('refundFormSection').style.display = 'none';
+            document.getElementById('makePaymentBtn').classList.add('active');
+            document.getElementById('requestRefundBtn').classList.remove('active');
+        });
+
+        document.getElementById('requestRefundBtn').addEventListener('click', function () {
+            document.getElementById('paymentFormSection').style.display = 'none';
+            document.getElementById('refundFormSection').style.display = 'block';
+            document.getElementById('makePaymentBtn').classList.remove('active');
+            document.getElementById('requestRefundBtn').classList.add('active');
+        });
 
         function resetForm() {
             document.getElementById('applyForm').reset();
             document.getElementById('applyForm').classList.remove('was-validated');
         }
 
+        function resetPaymentForm() {
+            document.getElementById('paymentForm').reset();
+            document.getElementById('paymentForm').classList.remove('was-validated');
+        }
+
+        // Refund form submission
         document.getElementById('applyForm').addEventListener('submit', async function (event) {
             event.preventDefault();
 
@@ -347,6 +581,71 @@
             }
         });
 
+
+        // Payment form submission
+        document.getElementById('paymentForm').addEventListener('submit', async function (event) {
+            event.preventDefault();
+
+            const formData = {
+                tuitionCode: document.getElementById('paymentTuitionCode').value.trim(),
+                paymentType: document.getElementById('paymentType').value.trim(),
+                paymentNumber: document.getElementById('paymentNumber').value.trim(),
+                transactionId: document.getElementById('transactionId').value.trim(),
+                personalPhone: document.getElementById('paymentContact').value,
+                amount: document.getElementById('paymentAmount').value,
+                name: document.getElementById('paymentName').value.trim(),
+                note: document.getElementById('paymentNote').value.trim(),
+            };
+
+            const agreeCheckbox = document.getElementById('agreePaymentTerms');
+            const termsError = document.getElementById('paymentTermsError');
+
+            const agreeCheckbox2 = document.getElementById('agreePaymentTerms2');
+            const termsError2 = document.getElementById('paymentTermsError2');
+
+            if (!agreeCheckbox2.checked) {
+                termsError2.classList.remove('d-none');
+                agreeCheckbox2.focus();
+                return;
+            } else {
+                termsError2.classList.add('d-none');
+            }
+
+            if (!agreeCheckbox.checked) {
+                termsError.classList.remove('d-none');
+                agreeCheckbox.focus();
+                return;
+            } else {
+                termsError.classList.add('d-none');
+            }
+
+            if (!this.checkValidity()) {
+                event.stopPropagation();
+                this.classList.add('was-validated');
+                return;
+            }
+
+            try {
+                const response = await fetch('https://tuition-seba-backend-1.onrender.com/api/teacherPayment/add', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                });
+
+                if (response.ok) {
+                    const myModal = new bootstrap.Modal(document.getElementById('successModal'));
+                    myModal.show();
+                    resetPaymentForm();
+                } else {
+                    alert('Error submitting payment');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('An error occurred. Please try again later.');
+            }
+        });
     </script>
 </body>
 
