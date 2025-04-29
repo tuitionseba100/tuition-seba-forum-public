@@ -528,6 +528,16 @@
             document.getElementById('paymentForm').classList.remove('was-validated');
         }
 
+        document.getElementById('paymentMethod').addEventListener('change', function () {
+            const refundNumber = document.getElementById('refundNumber');
+            if (this.value === 'cash') {
+                refundNumber.removeAttribute('required');
+                refundNumber.classList.remove('is-invalid', 'was-validated');
+            } else {
+                refundNumber.setAttribute('required', 'required');
+            }
+        });
+
         // Refund form submission
         document.getElementById('applyForm').addEventListener('submit', async function (event) {
             event.preventDefault();
@@ -581,6 +591,15 @@
             }
         });
 
+        document.getElementById('paymentType').addEventListener('change', function () {
+            const paymentNumber = document.getElementById('paymentNumber');
+            if (this.value === 'cash') {
+                paymentNumber.removeAttribute('required');
+                paymentNumber.classList.remove('is-invalid', 'was-validated');
+            } else {
+                paymentNumber.setAttribute('required', 'required');
+            }
+        });
 
         // Payment form submission
         document.getElementById('paymentForm').addEventListener('submit', async function (event) {
