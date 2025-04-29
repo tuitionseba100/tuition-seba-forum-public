@@ -535,8 +535,8 @@
             const formData = {
                 tuitionCode: document.getElementById('tuitionCode').value.trim(),
                 paymentType: document.getElementById('paymentMethod').value.trim(),
-                paymentNumber: parseInt(document.getElementById('paymentNumber').value),
-                personalPhone: parseInt(document.getElementById('contact').value),
+                paymentNumber: document.getElementById('paymentNumber').value,
+                personalPhone: document.getElementById('contact').value,
                 amount: parseFloat(document.getElementById('returnAmount').value),
                 name: document.getElementById('name').value.trim(),
                 note: document.getElementById('note').value.trim(),
