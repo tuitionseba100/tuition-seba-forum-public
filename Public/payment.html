@@ -182,7 +182,7 @@
                                         <label for="paymentNumber" class="form-label" style="font-weight: bold;">Type
                                             Number
                                             Bkash/Nagad</label>
-                                        <input type="tel" class="form-control" id="paymentNumber">
+                                        <input type="text" class="form-control" id="paymentNumber">
                                     </div>
                                     <div class="mb-3">
                                         <label for="transactionId" class="form-label"
@@ -206,7 +206,7 @@
                                         <label for="paymentContact" class="form-label" style="font-weight: bold;">Type
                                             Your Contact
                                             Number/ Whatsapp Number</label>
-                                        <input type="tel" class="form-control" id="paymentContact" required
+                                        <input type="text" class="form-control" id="paymentContact" required
                                             title="দয়া করে একটি বৈধ ফোন নম্বর লিখুন।">
                                         <div class="invalid-feedback">দয়া করে একটি বৈধ যোগাযোগ নম্বর লিখুন।</div>
                                     </div>
@@ -288,10 +288,10 @@
                                         <div class="invalid-feedback">দয়া করে একটি পেমেন্ট পদ্ধতি নির্বাচন করুন।</div>
                                     </div>
                                     <div class="mb-3">
-                                        <label for="paymentNumber" class="form-label" style="font-weight: bold;">Type
+                                        <label for="refundNumber" class="form-label" style="font-weight: bold;">Type
                                             Number
                                             Bkash/Nagad</label>
-                                        <input type="tel" class="form-control" id="paymentNumber" required>
+                                        <input type="text" class="form-control" id="refundNumber" required>
                                         <div class="invalid-feedback">দয়া করে বিকাশ/নগদ নম্বরটি সঠিকভাবে লিখুন।</div>
                                     </div>
                                     <div class="mb-3">
@@ -535,7 +535,7 @@
             const formData = {
                 tuitionCode: document.getElementById('tuitionCode').value.trim(),
                 paymentType: document.getElementById('paymentMethod').value.trim(),
-                paymentNumber: document.getElementById('paymentNumber').value,
+                paymentNumber: document.getElementById('refundNumber').value,
                 personalPhone: document.getElementById('contact').value,
                 amount: parseFloat(document.getElementById('returnAmount').value),
                 name: document.getElementById('name').value.trim(),
