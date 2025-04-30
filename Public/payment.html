@@ -115,234 +115,199 @@
         </div>
     </nav>
 
-    <section id="apply-form" class="py-5 mt-3 mb-2">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-md-6">
-                    <!-- Toggle buttons -->
-                    <div class="toggle-container">
-                        <button id="makePaymentBtn" class="toggle-btn active">Make a Payment</button>
-                        <button id="requestRefundBtn" class="toggle-btn">Request for Refund</button>
-                    </div>
+    <div class="container py-5 mt-3 mb-2 text-center">
+        <div class="text-center mb-3">
+            <p class="fw-bold text-primary mb-0">
+                টিউশন সেবা ফোরাম-এ পেমেন্ট করতে নিচের ফর্মটি পূরণ করুন।<br>
+                অথবা আমাদের কল করুন: 01540376020
+            </p>
+            <div class="d-flex justify-content-center align-items-center mt-2">
+                <p class="fw-bold text-primary mb-0 me-3">
+                    পেমেন্টের শর্তাবলি:
+                    <button type="button" class="btn btn-sm btn-outline-info ms-2" data-bs-toggle="modal"
+                        data-bs-target="#paymentTermsModal" title="পেমেন্টের শর্তাবলি">
+                        <i class="bi bi-info-circle"></i>
+                    </button>
+                </p>
+                <span class="separator mx-3">|</span>
+                <p class="fw-bold text-primary mb-0 ms-3">
+                    রিফান্ডের শর্তাবলি:
+                    <button type="button" class="btn btn-sm btn-outline-info ms-2" data-bs-toggle="modal"
+                        data-bs-target="#refundTermsModal" title="রিফান্ডের শর্তাবলি">
+                        <i class="bi bi-info-circle"></i>
+                    </button>
+                </p>
+            </div>
+        </div>
 
-                    <!-- Payment Form Section -->
-                    <div id="paymentFormSection">
-                        <div class="text-center mb-3">
-                            <p class="fw-bold text-primary mb-0">
-                                টিউশন সেবা ফোরাম-এ পেমেন্ট করতে নিচের ফর্মটি পূরণ করুন।<br>
-                                অথবা আমাদের কল করুন: 01540376020
-                            </p>
-                            <div class="d-flex justify-content-center align-items-center">
-                                <p class="fw-bold text-primary mb-0 me-3">
-                                    পেমেন্টের শর্তাবলি:
-                                    <button type="button" class="btn btn-sm btn-outline-info ms-2"
-                                        data-bs-toggle="modal" data-bs-target="#paymentTermsModal"
-                                        title="পেমেন্টের শর্তাবলি">
-                                        <i class="bi bi-info-circle"></i>
-                                    </button>
-                                </p>
-                                <span class="separator mx-3">|</span>
-                                <p class="fw-bold text-primary mb-0 ms-3">
-                                    রিফান্ডের শর্তাবলি:
-                                    <button type="button" class="btn btn-sm btn-outline-info ms-2"
-                                        data-bs-toggle="modal" data-bs-target="#refundTermsModal"
-                                        title="রিফান্ডের শর্তাবলি">
-                                        <i class="bi bi-info-circle"></i>
-                                    </button>
-                                </p>
-                            </div>
-                        </div>
+        <h5 class="mb-4">Choose an Action</h5>
+        <a href="#" class="btn btn-primary me-3" data-bs-toggle="modal" data-bs-target="#paymentModal">To make payment
+            click here</a>
+        <a href="#" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#refundModal">To ask refund click
+            here</a>
+    </div>
 
-                        <div class="card shadow-lg border-0">
-                            <div class="card-header text-white text-center"
-                                style="background-color: var(--primary-color);">
-                                <h5 class="mb-0 text-white">Make Payment</h5>
-                            </div>
-                            <div class="card-body">
-                                <form id="paymentForm" novalidate>
-                                    <div class="mb-3">
-                                        <label for="paymentTuitionCode" class="form-label"
-                                            style="font-weight: bold;">Type Tuition
-                                            Code</label>
-                                        <input type="text" class="form-control" id="paymentTuitionCode" required>
-                                        <div class="invalid-feedback">দয়া করে একটি বৈধ টিউশন কোড লিখুন।</div>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="paymentType" class="form-label" style="font-weight: bold;">Choose
-                                            Payment Method</label>
-                                        <select class="form-select" id="paymentType" required>
-                                            <option value="">Select payment method</option>
-                                            <option value="bkash">Bkash personal</option>
-                                            <option value="nagad">Nagad personal</option>
-                                            <option value="cash">Cash</option>
-                                        </select>
-                                        <div class="invalid-feedback">দয়া করে একটি পেমেন্ট পদ্ধতি নির্বাচন করুন।</div>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="paymentNumber" class="form-label" style="font-weight: bold;">Type
-                                            Number
-                                            Bkash/Nagad</label>
-                                        <input type="text" class="form-control" id="paymentNumber">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="transactionId" class="form-label"
-                                            style="font-weight: bold;">Transaction ID</label>
-                                        <input type="text" class="form-control" id="transactionId">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="paymentAmount" class="form-label" style="font-weight: bold;">Payment
-                                            Amount</label>
-                                        <input type="number" class="form-control" id="paymentAmount" required>
-                                        <div class="invalid-feedback">দয়া করে পেমেন্ট পরিমাণ লিখুন।</div>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="paymentName" class="form-label" style="font-weight: bold;">Type Your
-                                            Name</label>
-                                        <input type="text" class="form-control" id="paymentName" pattern="[A-Za-z\s]+"
-                                            title="শুধুমাত্র অক্ষর এবং স্পেস ব্যবহার করুন" required>
-                                        <div class="invalid-feedback">দয়া করে আপনার নাম লিখুন।</div>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="paymentContact" class="form-label" style="font-weight: bold;">Type
-                                            Your Contact
-                                            Number/ Whatsapp Number</label>
-                                        <input type="text" class="form-control" id="paymentContact" required
-                                            title="দয়া করে একটি বৈধ ফোন নম্বর লিখুন।">
-                                        <div class="invalid-feedback">দয়া করে একটি বৈধ যোগাযোগ নম্বর লিখুন।</div>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="paymentNote" class="form-label"
-                                            style="font-weight: bold;">Note</label>
-                                        <textarea class="form-control" id="paymentNote" rows="3"
-                                            maxlength="500"></textarea>
-                                    </div>
-                                    <div class="mb-3">
-                                        <div class="form-check mb-3">
-                                            <input class="form-check-input" type="checkbox" id="agreePaymentTerms2">
-                                            <label class="form-check-label" for="agreePaymentTerms2">
-                                                I agree with the payment <a href="#" data-bs-toggle="modal"
-                                                    data-bs-target="#paymentTermsModal">terms and conditions</a>.
-                                            </label>
-                                            <div id="paymentTermsError2" class="text-danger d-none mt-1">You must agree
-                                                with the payment terms and conditions.</div>
-                                        </div>
-                                        <div class="form-check mb-3">
-                                            <input class="form-check-input" type="checkbox" id="agreePaymentTerms">
-                                            <label class="form-check-label" for="agreePaymentTerms">
-                                                I agree with the refund <a href="#" data-bs-toggle="modal"
-                                                    data-bs-target="#refundTermsModal">terms and conditions</a>.
-                                            </label>
-                                            <div id="paymentTermsError" class="text-danger d-none mt-1">You must agree
-                                                with the refund
-                                                terms and conditions.</div>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                            <div class="card-footer text-center d-flex justify-content-between">
-                                <button type="reset" class="btn btn-secondary" form="paymentForm"
-                                    onclick="resetPaymentForm()">Reset</button>
-                                <button type="submit" class="btn btn-success" form="paymentForm">Submit Payment</button>
-                            </div>
-                        </div>
-                    </div>
+    <!-- Payment Modal -->
+    <div class="modal fade" id="paymentModal" tabindex="-1" aria-labelledby="paymentModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title" id="paymentModalLabel">Make Payment</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
 
-                    <!-- Refund Form Section -->
-                    <div id="refundFormSection" style="display: none;">
-                        <div class="text-center mb-3">
-                            <p class="fw-bold text-primary">
-                                রিফান্ডের জন্য আবেদন করতে নিচের ফর্মটি পূরণ করুন।<br>
-                                অথবা আমাদের কল করুন: 01540376020
-                            </p>
-                            <p class="fw-bold text-primary">
-                                রিফান্ডের শর্তাবলি:
-                                <button type="button" class="btn btn-sm btn-outline-info ms-2" data-bs-toggle="modal"
-                                    data-bs-target="#refundTermsModal" title="রিফান্ডের শর্তাবলি">
-                                    <i class="bi bi-info-circle"></i>
-                                </button>
-                            </p>
+
+                    <form id="paymentForm" novalidate>
+                        <div class="mb-3">
+                            <label for="paymentTuitionCode" class="form-label fw-bold">Type Tuition Code</label>
+                            <input type="text" class="form-control" id="paymentTuitionCode" required>
+                            <div class="invalid-feedback">দয়া করে একটি বৈধ টিউশন কোড লিখুন।</div>
                         </div>
-                        <div class="card shadow-lg border-0">
-                            <div class="card-header text-white text-center"
-                                style="background-color: var(--primary-color);">
-                                <h5 class="mb-0 text-white">Request refund</h5>
+                        <div class="mb-3">
+                            <label for="paymentType" class="form-label fw-bold">Choose Payment Method</label>
+                            <select class="form-select" id="paymentType" required>
+                                <option value="">Select payment method</option>
+                                <option value="bkash">Bkash personal</option>
+                                <option value="nagad">Nagad personal</option>
+                                <option value="cash">Cash</option>
+                            </select>
+                            <div class="invalid-feedback">দয়া করে একটি পেমেন্ট পদ্ধতি নির্বাচন করুন।</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="paymentNumber" class="form-label fw-bold">Type Number Bkash/Nagad</label>
+                            <input type="text" class="form-control" id="paymentNumber">
+                        </div>
+                        <div class="mb-3">
+                            <label for="transactionId" class="form-label fw-bold">Transaction ID</label>
+                            <input type="text" class="form-control" id="transactionId">
+                        </div>
+                        <div class="mb-3">
+                            <label for="paymentAmount" class="form-label fw-bold">Payment Amount</label>
+                            <input type="number" class="form-control" id="paymentAmount" required>
+                            <div class="invalid-feedback">দয়া করে পেমেন্ট পরিমাণ লিখুন।</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="paymentName" class="form-label fw-bold">Type Your Name</label>
+                            <input type="text" class="form-control" id="paymentName" pattern="[A-Za-z\s]+" required>
+                            <div class="invalid-feedback">দয়া করে আপনার নাম লিখুন।</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="paymentContact" class="form-label fw-bold">Type Your Contact Number/ Whatsapp
+                                Number</label>
+                            <input type="text" class="form-control" id="paymentContact" required>
+                            <div class="invalid-feedback">দয়া করে একটি বৈধ যোগাযোগ নম্বর লিখুন।</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="paymentNote" class="form-label fw-bold">Note</label>
+                            <textarea class="form-control" id="paymentNote" rows="3" maxlength="500"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" id="agreePaymentTerms2">
+                                <label class="form-check-label" for="agreePaymentTerms2">
+                                    I agree with the payment <a href="#" data-bs-toggle="modal"
+                                        data-bs-target="#paymentTermsModal">terms and conditions</a>.
+                                </label>
+                                <div id="paymentTermsError2" class="text-danger d-none mt-1">You must agree with the
+                                    payment terms and conditions.</div>
                             </div>
-                            <div class="card-body">
-                                <form id="applyForm" novalidate>
-                                    <div class="mb-3">
-                                        <label for="tuitionCode" class="form-label" style="font-weight: bold;">Type
-                                            Tuition
-                                            Code</label>
-                                        <input type="text" class="form-control" id="tuitionCode" required>
-                                        <div class="invalid-feedback">দয়া করে একটি বৈধ টিউশন কোড লিখুন।</div>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="paymentMethod" class="form-label" style="font-weight: bold;">Choose
-                                            Bkash/ Nagad</label>
-                                        <select class="form-select" id="paymentMethod" required>
-                                            <option value="">Select payment number type</option>
-                                            <option value="bkash">Bkash Personal</option>
-                                            <option value="nagad">Nagad Personal</option>
-                                            <option value="cash">Cash</option>
-                                        </select>
-                                        <div class="invalid-feedback">দয়া করে একটি পেমেন্ট পদ্ধতি নির্বাচন করুন।</div>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="refundNumber" class="form-label" style="font-weight: bold;">Type
-                                            Number
-                                            Bkash/Nagad</label>
-                                        <input type="text" class="form-control" id="refundNumber" required>
-                                        <div class="invalid-feedback">দয়া করে বিকাশ/নগদ নম্বরটি সঠিকভাবে লিখুন।</div>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="returnAmount" class="form-label" style="font-weight: bold;">Return
-                                            Amount</label>
-                                        <input type="number" class="form-control" id="returnAmount" required>
-                                        <div class="invalid-feedback">দয়া করে ফেরত পরিমাণ লিখুন।</div>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="name" class="form-label" style="font-weight: bold;">Type Your
-                                            Name</label>
-                                        <input type="text" class="form-control" id="name" pattern="[A-Za-z\s]+"
-                                            title="শুধুমাত্র অক্ষর এবং স্পেস ব্যবহার করুন" required>
-                                        <div class="invalid-feedback">দয়া করে আপনার নাম লিখুন।</div>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="contact" class="form-label" style="font-weight: bold;">Type Your
-                                            Contact
-                                            Number/ Whatsapp Number</label>
-                                        <input type="tel" class="form-control" id="contact" required
-                                            title="দয়া করে একটি বৈধ ফোন নম্বর লিখুন।">
-                                        <div class="invalid-feedback">দয়া করে একটি বৈধ যোগাযোগ নম্বর লিখুন।</div>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="note" class="form-label" style="font-weight: bold;">Note</label>
-                                        <textarea class="form-control" id="note" rows="3" maxlength="500"></textarea>
-                                    </div>
-                                    <div class="mb-3">
-                                        <div class="form-check mb-3">
-                                            <input class="form-check-input" type="checkbox" id="agreeTerms">
-                                            <label class="form-check-label" for="agreeTerms">
-                                                I agree with the <a href="#" data-bs-toggle="modal"
-                                                    data-bs-target="#refundTermsModal">refund terms and conditions</a>.
-                                            </label>
-                                            <div id="termsError" class="text-danger d-none mt-1">You must agree with the
-                                                refund terms and conditions.</div>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                            <div class="card-footer text-center d-flex justify-content-between">
-                                <button type="reset" class="btn btn-secondary" form="applyForm"
-                                    onclick="resetForm()">Reset</button>
-                                <button type="submit" class="btn btn-success" form="applyForm">Apply</button>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="agreePaymentTerms">
+                                <label class="form-check-label" for="agreePaymentTerms">
+                                    I agree with the refund <a href="#" data-bs-toggle="modal"
+                                        data-bs-target="#refundTermsModal">terms and conditions</a>.
+                                </label>
+                                <div id="paymentTermsError" class="text-danger d-none mt-1">You must agree with the
+                                    refund terms and conditions.</div>
                             </div>
                         </div>
-                    </div>
+                        <div class="d-flex justify-content-between">
+                            <button type="reset" class="btn btn-secondary" onclick="resetPaymentForm()">Reset</button>
+                            <button type="submit" class="btn btn-success">Submit</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+
+    <!-- Refund Modal -->
+    <div class="modal fade" id="refundModal" tabindex="-1" aria-labelledby="refundModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header bg-danger text-white">
+                    <h5 class="modal-title" id="refundModalLabel">Request Refund</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="applyForm" novalidate>
+                        <div class="mb-3">
+                            <label for="tuitionCode" class="form-label fw-bold">Type Tuition Code</label>
+                            <input type="text" class="form-control" id="tuitionCode" required>
+                            <div class="invalid-feedback">দয়া করে একটি বৈধ টিউশন কোড লিখুন।</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="paymentMethod" class="form-label fw-bold">Choose Bkash/ Nagad</label>
+                            <select class="form-select" id="paymentMethod" required>
+                                <option value="">Select payment number type</option>
+                                <option value="bkash">Bkash Personal</option>
+                                <option value="nagad">Nagad Personal</option>
+                                <option value="cash">Cash</option>
+                            </select>
+                            <div class="invalid-feedback">দয়া করে একটি পেমেন্ট পদ্ধতি নির্বাচন করুন।</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="refundNumber" class="form-label fw-bold">Type Number Bkash/Nagad</label>
+                            <input type="text" class="form-control" id="refundNumber" required>
+                            <div class="invalid-feedback">দয়া করে বিকাশ/নগদ নম্বরটি সঠিকভাবে লিখুন।</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="returnAmount" class="form-label fw-bold">Return Amount</label>
+                            <input type="number" class="form-control" id="returnAmount" required>
+                            <div class="invalid-feedback">দয়া করে ফেরত পরিমাণ লিখুন।</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="name" class="form-label fw-bold">Type Your Name</label>
+                            <input type="text" class="form-control" id="name" pattern="[A-Za-z\s]+" required>
+                            <div class="invalid-feedback">দয়া করে আপনার নাম লিখুন।</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="contact" class="form-label fw-bold">Type Your Contact Number/ Whatsapp
+                                Number</label>
+                            <input type="tel" class="form-control" id="contact" required>
+                            <div class="invalid-feedback">দয়া করে একটি বৈধ যোগাযোগ নম্বর লিখুন।</div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="note" class="form-label" style="font-weight: bold;">Note</label>
+                            <textarea class="form-control" id="note" rows="3" maxlength="500"></textarea>
+                        </div>
+
+                        <div class="mb-3">
+                            <div class="form-check mb-3">
+                                <input class="form-check-input" type="checkbox" id="agreeTerms">
+                                <label class="form-check-label" for="agreeTerms">
+                                    I agree with the <a href="#" data-bs-toggle="modal"
+                                        data-bs-target="#refundTermsModal">refund terms and conditions</a>.
+                                </label>
+                                <div id="termsError" class="text-danger d-none mt-1">You must agree with the
+                                    refund terms and conditions.</div>
+                            </div>
+                        </div>
+
+                        <!-- You can include any additional refund form fields here -->
+                        <div class="d-flex justify-content-between">
+                            <button type="reset" class="btn btn-secondary" onclick="resetForm()">Reset</button>
+                            <button id="applyForm" type="submit" class="btn btn-danger">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -503,20 +468,6 @@
     <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script>
-        // Toggle between payment and refund forms
-        document.getElementById('makePaymentBtn').addEventListener('click', function () {
-            document.getElementById('paymentFormSection').style.display = 'block';
-            document.getElementById('refundFormSection').style.display = 'none';
-            document.getElementById('makePaymentBtn').classList.add('active');
-            document.getElementById('requestRefundBtn').classList.remove('active');
-        });
-
-        document.getElementById('requestRefundBtn').addEventListener('click', function () {
-            document.getElementById('paymentFormSection').style.display = 'none';
-            document.getElementById('refundFormSection').style.display = 'block';
-            document.getElementById('makePaymentBtn').classList.remove('active');
-            document.getElementById('requestRefundBtn').classList.add('active');
-        });
 
         function resetForm() {
             document.getElementById('applyForm').reset();
@@ -527,6 +478,18 @@
             document.getElementById('paymentForm').reset();
             document.getElementById('paymentForm').classList.remove('was-validated');
         }
+
+        var refundModal = document.getElementById('refundModal');
+
+        refundModal.addEventListener('hidden.bs.modal', function () {
+            resetForm();
+        });
+
+        var paymentModal = document.getElementById('paymentModal');
+
+        paymentModal.addEventListener('hidden.bs.modal', function () {
+            resetPaymentForm();
+        });
 
         document.getElementById('paymentMethod').addEventListener('change', function () {
             const refundNumber = document.getElementById('refundNumber');
