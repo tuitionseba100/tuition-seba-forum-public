@@ -485,6 +485,12 @@
         </div>
     </div>
 
+    <div class="text-center py-4">
+        <button type="button" class="btn btn-primary px-4 py-2"
+            onclick="window.location.href='teacherRegistration.html'">
+            Register as Our Premium Teacher
+        </button>
+    </div>
     <!-- Update Link (Bold Text) -->
     <div class="text-center py-2 mt-5">
         <div class="container">
@@ -537,7 +543,11 @@
         </div>
     </div>
 
+
     <section id="available-tuitions" class="py-5">
+        <small class="d-block text-center mb-3">
+            টিউশনের জন্য আবেদন করতে অবশ্যই আমাদের রেজিস্টার্ড শিক্ষক হতে হবে।
+        </small>
         <div class="container">
             <h2 class="text-center text-primary h-2 fw-bold mb-5">Available Tuitions</h2>
             <!-- Filter Section -->
@@ -768,7 +778,11 @@
                 <form id="applicationForm" class="p-3">
                     <div class="modal-body">
                         <div class="row g-3">
-
+                            <div class="col-md-6">
+                                <label class="form-label">Registration Code</label>
+                                <input type="text" class="form-control" id="premiumCode" required>
+                                <div class="invalid-feedback">Please enter your registration code.</div>
+                            </div>
                             <div class="col-md-6">
                                 <label class="form-label">Tuition Code</label>
                                 <input type="text" class="form-control" id="tuitionCodeDisplay" readonly>
@@ -1010,6 +1024,7 @@
             if (!validateForm()) return;
 
             const payload = {
+                premiumCode: $('#premiumCode').val().trim(),
                 tuitionId: $('#tuitionIdDisplay').val(),
                 tuitionCode: $('#tuitionCodeDisplay').val(),
                 name: $('#applicantName').val(),

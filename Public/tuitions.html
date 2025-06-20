@@ -224,7 +224,11 @@
                 <form id="applicationForm" class="p-3">
                     <div class="modal-body">
                         <div class="row g-3">
-
+                            <div class="col-md-6">
+                                <label class="form-label">Registration Code</label>
+                                <input type="text" class="form-control" id="premiumCode" required>
+                                <div class="invalid-feedback">Please enter your registration code.</div>
+                            </div>
                             <div class="col-md-6">
                                 <label class="form-label">Tuition Code</label>
                                 <input type="text" class="form-control" id="tuitionCodeDisplay" readonly>
@@ -481,13 +485,14 @@
             if (!validateForm()) return;
 
             const payload = {
+                premiumCode: $('#premiumCode').val().trim(),
                 tuitionId: $('#tuitionIdDisplay').val(),
                 tuitionCode: $('#tuitionCodeDisplay').val(),
                 name: $('#applicantName').val(),
                 institute: $('#applicantInstitute').val(),
                 address: $('#applicantAddress').val(),
                 department: $('#applicantDepartment').val(),
-                phone: $('#applicantPhone').val(),
+                phone: $('#applicantPhone').val().trim(),
                 comment: $('#applicantComment').val()
             };
 
