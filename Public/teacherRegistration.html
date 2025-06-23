@@ -10,9 +10,12 @@
 
     <!-- Bootstrap CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary-color: #4a90e2;
@@ -33,37 +36,27 @@
             color: #333;
         }
 
-
         body {
             padding-top: 20px;
 
         }
 
-        .form-section {
-            margin-bottom: 2rem;
+        .hero-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 3rem 0;
         }
 
-        label {
-            font-weight: bold;
+        .form-container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
         }
 
-        .was-validated .form-control:invalid,
-        .was-validated .form-select:invalid {
-            border-color: #dc3545;
-        }
-
-        .was-validated .form-control:invalid:focus,
-        .was-validated .form-select:invalid:focus {
-            box-shadow: 0 0 0 0.25rem rgba(220, 53, 69, 0.25);
-        }
-
-        .invalid-feedback {
-            display: none;
-        }
-
-        .was-validated .form-control:invalid~.invalid-feedback,
-        .was-validated .form-select:invalid~.invalid-feedback {
-            display: block;
+        .section-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 10px;
         }
     </style>
 </head>
@@ -95,10 +88,15 @@
                         </a>
                     </li>
 
+                    <li class="nav-item">
+                        <a class="nav-link" href="teacherRegistration.html" target="_blank">
+                            Registration
+                        </a>
+                    </li>
+
                     <!-- Social Media Icons -->
                     <li class="nav-item">
-                        <a class="nav-link" href="https://facebook.com/groups/1003753066957594/"
-                            target="_blank">
+                        <a class="nav-link" href="https://facebook.com/groups/1003753066957594/" target="_blank">
                             <i class="fab fa-facebook-f"></i>
                         </a>
                     </li>
@@ -113,38 +111,97 @@
         </div>
     </nav>
 
+    <div class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-8">
+                    <h1 class="display-4 fw-bold mb-3">
+                        <i class="bi bi-mortarboard-fill me-3"></i>
+                        Teacher Registration
+                    </h1>
+                    <p class="lead mb-4">Join our verified teacher community and get access to premium tuition
+                        opportunities</p>
+                    <div class="d-flex flex-wrap gap-3 mb-4">
+                        <div class="d-flex align-items-center">
+                            <i class="bi bi-telephone-fill me-2"></i>
+                            <span class="fw-semibold">Call Us: 01540376020</span>
+                        </div>
+                        <button type="button" class="btn btn-light btn-lg" data-bs-toggle="modal"
+                            data-bs-target="#infoModal">
+                            <i class="bi bi-info-circle me-2"></i>
+                            Benefits & Terms
+                        </button>
+                    </div>
+                </div>
+                <div class="col-lg-4 text-center">
+                    <div class="bg-white bg-opacity-10 rounded-circle p-5 d-inline-block">
+                        <i class="bi bi-person-badge display-1"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container my-5">
+        <div class="form-container p-4 p-md-5">
+            <div class="text-center mb-5">
+                <h2 class="fw-bold text-primary mb-3">Registration Form</h2>
+                <p class="text-muted">Please fill out all required fields to complete your registration</p>
+                <div class="progress mb-4" style="height: 6px;">
+                    <div class="progress-bar bg-gradient" role="progressbar" style="width: 0%" id="formProgress"></div>
+                </div>
+            </div>
+
+            <form id="tuitionForm" novalidate>
+                <div id="formSections"></div>
+
+                <div class="text-center mt-5">
+                    <button type="submit" class="btn btn-primary btn-lg px-5 py-3">
+                        <i class="bi bi-check-circle me-2"></i>
+                        Submit Registration
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <div class="modal fade" id="infoModal" tabindex="-1" aria-labelledby="infoModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-scrollable modal-dialog-centered">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="infoModalLabel">রেজিস্টার্ড শিক্ষক হওয়ার সুবিধা ও শর্তাবলী</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title" id="infoModalLabel">
+                        <i class="bi bi-info-circle me-2"></i>
+                        রেজিস্টার্ড শিক্ষক হওয়ার সুবিধা ও শর্তাবলী
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
                 </div>
-                <div class="modal-body" style="white-space: pre-line;">
+                <div class="modal-body" style="white-space: pre-line; line-height: 1.6;">
                     আসসালামু আলাইকুম, আমাদের ভেরিফাইড টিচার প্রজেক্টে আপনাকে স্বাগতম।
-                    টিউশন সেবা ফোরাম দীর্ঘসময় ধরে সততা, বিশ্বস্ততার সঙ্গে টিউশন প্রোভাইড করে আসছে।
+                    টিউশন সেবা ফোরাম দীর্ঘসময় ধরে সততা, বিশ্বস্ততার সঙ্গে টিউশন প্রোভাইড করে আসছে।
 
-                    ভেরিফাইড টিচার বলতে আমরা বুঝাচ্ছি একজন টিচার যাকে আমরা বিশ্বাস করতে পারি এবং তার যাবতীয় ডকুমেন্টস
+                    ভেরিফাইড টিচার বলতে আমরা বুঝাচ্ছি একজন টিচার যাকে আমরা বিশ্বাস করতে পারি এবং তার যাবতীয় ডকুমেন্টস
                     যাচাই-বাছাই করে ভেরিফাইড করবো। এতে একদিকে যেমন শিক্ষক, অভিভাবক ও আমরা সবাই সুবিধা পাবো।
 
                     ★ভেরিফাইড টিচার হলে কি কি সুবিধা পাবেন?
 
-                    ১/ টিউশন কনফার্ম হওয়ার আগে কোনো টাকা দেয়ার ঝামেলা থাকবে না। হাতে টাকা না থাকলেও সমস্যা নাই।
+                    ১/ টিউশন কনফার্ম হওয়ার আগে কোনো টাকা দেয়ার ঝামেলা থাকবে না। হাতে টাকা না থাকলেও সমস্যা নাই।
 
-                    ২/ মিডিয়া ফি কনফার্ম এর পর ৩০% দিবেন এক সপ্তাহের মধ্যে। এবং বেতন পাওয়ার পর দিবেন ৩০%।
+                    ২/ মিডিয়া ফি কনফার্ম এর পর ৩০% দিবেন এক সপ্তাহের মধ্যে। এবং বেতন পাওয়ার পর দিবেন ৩০%।
 
-                    ৩/ বাসার কাছাকাছি এলাকায় টিউশন আসলে মাঝে মাঝে পাচ্ছেন মোবাইলে মেসেজ।
+                    ৩/ বাসার কাছাকাছি এলাকায় টিউশন আসলে মাঝে মাঝে পাচ্ছেন মোবাইলে মেসেজ।
 
                     ৪/ আপনি ভুলে গেলেও আমরা আপনাকে ভুলছি না।
-                    সর্বোপরি পরিস্থিতি অনুযায়ী সর্বোচ্চ সহযোগিতা।
+                    সর্বোপরি পরিস্থিতি অনুযায়ী সর্বোচ্চ সহযোগিতা।
 
                     ★কিভাবে ভেরিফাইড টিচার হবেন?
 
-                    ১/ আমাদের ওয়েবসাইটে গিয়ে রেজিষ্ট্রেশন বাটনে ক্লিক করে যাবতীয় সব তথ্য পূরণ করতে হবে। কোনো রকম মিথ্যা,
-                    ভুয়া তথ্য দেয়া যাবে না।
+                    ১/ আমাদের ওয়েবসাইটে গিয়ে রেজিষ্ট্রেশন বাটনে ক্লিক করে যাবতীয় সব তথ্য পূরণ করতে হবে। কোনো রকম
+                    মিথ্যা,
+                    ভুয়া তথ্য দেয়া যাবে না।
 
-                    ২/ Whatsapp এ আপনার বর্তমান পড়াশোনার ডকুমেন্টস যেমন আইডি কার্ড/ ভর্তি রসিদ এর ছবি দিবেন। এরপর আপনার
-                    NID/জন্মনিবন্ধন এর ছবি, যদি টিউশন সেবা ফোরাম মনে করে আরও কোনো তথ্য যাচাই করা প্রয়োজন সেগুলো দিতে
+                    ২/ Whatsapp এ আপনার বর্তমান পড়াশোনার ডকুমেন্টস যেমন আইডি কার্ড/ ভর্তি রসিদ এর ছবি দিবেন। এরপর আপনার
+                    NID/জন্মনিবন্ধন এর ছবি, যদি টিউশন সেবা ফোরাম মনে করে আরও কোনো তথ্য যাচাই করা প্রয়োজন সেগুলো দিতে
                     হবে।
 
                     ৩/ ভেরিফাইড টিচার এর জন্য ফি ৩০০ টাকা । (অফেরতযোগ্য)
@@ -156,103 +213,91 @@
 
                     ★কি কি শর্তাবলি মানতে হবে?
 
-                    ১/ টিউশন কনফার্ম হওয়ার পর ১ সপ্তাহের মধ্যে ৩০% মিডিয়া ফি দিয়ে দিতে হবে।
+                    ১/ টিউশন কনফার্ম হওয়ার পর ১ সপ্তাহের মধ্যে ৩০% মিডিয়া ফি দিয়ে দিতে হবে।
 
-                    ২/ বেতন পাওয়ার পর ৩০% মিডিয়া ফি দিতে হবে। বেতন পাওয়ার পর ১ দিনের বেশি দেরি করা যাবে না।
+                    ২/ বেতন পাওয়ার পর ৩০% মিডিয়া ফি দিতে হবে। বেতন পাওয়ার পর ১ দিনের বেশি দেরি করা যাবে না।
 
                     ৩/ নিজ ইচ্ছেমতো টিউশন ক্যান্সেল করা যাবে না। বৈধ কারণ থাকলে অবশ্যই ক্যান্সেল করা যাবে।
 
-                    ৪/ টিউশন নেয়ার পর থেকে বেতন পেয়ে টাকা দেয়া পর্যন্ত আমরা মেসেজ কল দিলে অন্তত ১ দিনের মধ্যে যোগাযোগ
+                    ৪/ টিউশন নেয়ার পর থেকে বেতন পেয়ে টাকা দেয়া পর্যন্ত আমরা মেসেজ কল দিলে অন্তত ১ দিনের মধ্যে যোগাযোগ
                     করতে হবে৷
 
-                    ৫/ আপনার যাবতীয় সমস্যা আমাদের জানাবেন Whatsapp এ মেসেজ/ভয়েস রেকর্ড এর মাধ্যমে।
+                    ৫/ আপনার যাবতীয় সমস্যা আমাদের জানাবেন Whatsapp এ মেসেজ/ভয়েস রেকর্ড এর মাধ্যমে।
 
-                    আমাদেরকে পাওনা টাকা না দিয়ে যোগাযোগ বন্ধ করে দিলে আমরা আইনগত ব্যবস্থা নিবো এবং আপনার যাবতীয় মানহানির
-                    জন্য টিউশন সেবা ফোরাম দায়ি থাকবে না।
+                    আমাদেরকে পাওনা টাকা না দিয়ে যোগাযোগ বন্ধ করে দিলে আমরা আইনগত ব্যবস্থা নিবো এবং আপনার যাবতীয়
+                    মানহানির
+                    জন্য টিউশন সেবা ফোরাম দায়ি থাকবে না।
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">বন্ধ করুন</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        <i class="bi bi-x-circle me-2"></i>বন্ধ করুন
+                    </button>
                 </div>
             </div>
         </div>
     </div>
 
     <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title text-primary" id="successModalLabel">Success</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <div class="modal-header bg-success text-white">
+                    <h5 class="modal-title" id="successModalLabel">
+                        <i class="bi bi-check-circle me-2"></i>Success
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
-                    <div class="text-center">
-                        <i class="bi bi-check-circle" style="color: green; font-size: 2rem;"></i>
-                        <h4 style="color: green;">আপনার আবেদন সফল হয়েছে!</h4>
+                <div class="modal-body text-center">
+                    <div class="mb-4">
+                        <i class="bi bi-check-circle-fill text-success" style="font-size: 4rem;"></i>
                     </div>
-                    <br>
-                    দ্রুত সময়ের মধ্যে আমাদের একজন এজেন্ট আপনার সঙ্গে যোগাযোগ করবেন।
-                    <br><br>
-                    <hr />
-                    Tuition Seba Forum-এর সাথে থাকার জন্য ধন্যবাদ।
+                    <h4 class="text-success mb-3">আপনার আবেদন সফল হয়েছে!</h4>
+                    <p class="mb-3">দ্রুত সময়ের মধ্যে আমাদের একজন এজেন্ট আপনার সঙ্গে যোগাযোগ করবেন।</p>
+                    <hr class="my-4">
+                    <p class="mb-0"><strong>Tuition Seba Forum</strong>-এর সাথে থাকার জন্য ধন্যবাদ।</p>
                 </div>
-
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-success" data-bs-dismiss="modal">
+                        <i class="bi bi-check me-2"></i>Close
+                    </button>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="container my-5">
-        <button type="button" class="btn btn-info ms-2" data-bs-toggle="modal" data-bs-target="#infoModal">
-            রেজিস্টার্ড শিক্ষক হওয়ার সুবিধা ও শর্তাবলী
-        </button>
-        <h2 class="mb-4">আমাদের কল করুন: 01540376020</h2>
-        <h2 class="mb-4">Teacher Registration Form</h2>
-
-        <form id="tuitionForm" novalidate>
-            <div id="formSections"></div>
-            <button type="submit" class="btn btn-primary">Save</button>
-        </form>
-    </div>
-    <!-- Bootstrap 5 JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.1/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.1/SplitText.min.js"></script>
-
-    <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
     <script>
         const fieldConfig = [
-            { name: 'name', label: 'Name', col: 6, group: 'Personal Info' },
-            { name: 'gender', label: 'Gender', col: 6, group: 'Personal Info', type: 'select', options: ['male', 'female'] },
-            { name: 'phone', label: 'Phone', col: 6, group: 'Personal Info' },
-            { name: 'alternativePhone', label: 'Alternative Phone', col: 6, group: 'Personal Info' },
-            { name: 'whatsapp', label: 'WhatsApp', col: 6, group: 'Personal Info' },
-            { name: 'email', label: 'Email', col: 6, group: 'Personal Info' },
-            { name: 'facebookLink', label: 'Facebook Link', col: 6, group: 'Personal Info' },
-            { name: 'familyPhone', label: 'Family Phone', col: 6, group: 'Personal Info' },
-            { name: 'friendPhone', label: 'Friend Phone', col: 6, group: 'Personal Info' },
-            { name: 'city', label: 'City', col: 6, group: 'Personal Info', type: 'city' },
-            { name: 'currentArea', label: 'Current Area', col: 6, group: 'Personal Info', type: 'area' },
-            { name: 'fullAddress', label: 'Full Address', col: 6, group: 'Personal Info' },
+            { name: 'name', label: 'Name', col: 6, group: 'Personal Info', icon: 'person' },
+            { name: 'gender', label: 'Gender', col: 6, group: 'Personal Info', type: 'select', options: ['male', 'female'], icon: 'gender-ambiguous' },
+            { name: 'phone', label: 'Phone', col: 6, group: 'Personal Info', icon: 'telephone' },
+            { name: 'alternativePhone', label: 'Alternative Phone', col: 6, group: 'Personal Info', icon: 'telephone' },
+            { name: 'whatsapp', label: 'WhatsApp', col: 6, group: 'Personal Info', icon: 'whatsapp' },
+            { name: 'email', label: 'Email', col: 6, group: 'Personal Info', icon: 'envelope' },
+            { name: 'facebookLink', label: 'Facebook Link', col: 6, group: 'Personal Info', icon: 'facebook' },
+            { name: 'familyPhone', label: 'Family Phone', col: 6, group: 'Personal Info', icon: 'telephone' },
+            { name: 'friendPhone', label: 'Friend Phone', col: 6, group: 'Personal Info', icon: 'telephone' },
+            { name: 'city', label: 'City', col: 6, group: 'Personal Info', type: 'city', icon: 'geo-alt' },
+            { name: 'currentArea', label: 'Current Area', col: 6, group: 'Personal Info', type: 'area', icon: 'pin-map' },
+            { name: 'fullAddress', label: 'Full Address', col: 6, group: 'Personal Info', icon: 'house' },
 
-            { name: 'academicYear', label: 'Academic Year', col: 6, group: 'Academic Info', type: 'select', options: ['1st', '2nd', '3rd', '4th', '5th/masters', 'completed'] },
-            { name: 'medium', label: 'Medium', col: 6, group: 'Academic Info' },
-            { name: 'mastersDept', label: 'Masters Dept', col: 6, group: 'Academic Info', optional: true },
-            { name: 'mastersUniversity', label: 'Masters University', col: 6, group: 'Academic Info', optional: true },
-            { name: 'honorsDept', label: 'Honours Dept', col: 6, group: 'Academic Info', optional: true },
-            { name: 'honorsUniversity', label: 'Honours University', col: 6, group: 'Academic Info', optional: true },
-            { name: 'hscGroup', label: 'HSC Group', col: 6, group: 'Academic Info', type: 'select', options: ['Science', 'Arts', 'Commerce', 'Vocational'] },
-            { name: 'hscResult', label: 'HSC Result', col: 6, group: 'Academic Info' },
-            { name: 'sscGroup', label: 'SSC Group', col: 6, group: 'Academic Info', type: 'select', options: ['Science', 'Arts', 'Commerce', 'Vocational'] },
-            { name: 'sscResult', label: 'SSC Result', col: 6, group: 'Academic Info' },
+            { name: 'academicYear', label: 'Academic Year', col: 6, group: 'Academic Info', type: 'select', options: ['1st', '2nd', '3rd', '4th', '5th/masters', 'completed'], icon: 'calendar-event' },
+            { name: 'medium', label: 'Medium', col: 6, group: 'Academic Info', icon: 'translate' },
+            { name: 'mastersDept', label: 'Masters Dept', col: 6, group: 'Academic Info', optional: true, icon: 'mortarboard' },
+            { name: 'mastersUniversity', label: 'Masters University', col: 6, group: 'Academic Info', optional: true, icon: 'building' },
+            { name: 'honorsDept', label: 'Honours Dept', col: 6, group: 'Academic Info', optional: true, icon: 'mortarboard' },
+            { name: 'honorsUniversity', label: 'Honours University', col: 6, group: 'Academic Info', optional: true, icon: 'building' },
+            { name: 'hscGroup', label: 'HSC Group', col: 6, group: 'Academic Info', type: 'select', options: ['Science', 'Arts', 'Commerce', 'Vocational'], icon: 'book' },
+            { name: 'hscResult', label: 'HSC Result', col: 6, group: 'Academic Info', icon: 'award' },
+            { name: 'sscGroup', label: 'SSC Group', col: 6, group: 'Academic Info', type: 'select', options: ['Science', 'Arts', 'Commerce', 'Vocational'], icon: 'book' },
+            { name: 'sscResult', label: 'SSC Result', col: 6, group: 'Academic Info', icon: 'award' },
 
-            { name: 'experience', label: 'Experience', col: 6, group: 'Teaching Profile' },
-            { name: 'favoriteSubject', label: 'Favorite Subject', col: 6, group: 'Teaching Profile' },
-            { name: 'expectedTuitionAreas', label: 'Expected Tuition Areas', col: 6, group: 'Teaching Profile' },
-            { name: 'commentFromTeacher', label: 'Comment From Teacher', col: 6, group: 'Teaching Profile' },
+            { name: 'experience', label: 'Experience', col: 6, group: 'Teaching Profile', icon: 'clock-history' },
+            { name: 'favoriteSubject', label: 'Favorite Subject', col: 6, group: 'Teaching Profile', icon: 'heart' },
+            { name: 'expectedTuitionAreas', label: 'Expected Tuition Areas', col: 6, group: 'Teaching Profile', icon: 'geo' },
+            { name: 'commentFromTeacher', label: 'Comment From Teacher', col: 6, group: 'Teaching Profile', icon: 'chat-text' },
         ];
 
         const cityOptions = [
@@ -295,13 +340,25 @@
             groups[field.group].push(field);
         });
 
+        let sectionIndex = 0;
+        const totalSections = Object.keys(groups).length;
+
         for (let groupName in groups) {
             const section = document.createElement('div');
-            section.classList.add('form-section');
-            section.innerHTML = `<h5 class="text-primary border-bottom pb-1 mb-3">${groupName}</h5>`;
+            section.classList.add('form-section', 'mb-5');
+
+            const sectionHeader = document.createElement('div');
+            sectionHeader.className = 'section-header p-3 mb-4';
+            sectionHeader.innerHTML = `
+                <h5 class="mb-0">
+                    <i class="bi bi-${sectionIndex === 0 ? 'person' : sectionIndex === 1 ? 'book' : 'mortarboard'} me-2"></i>
+                    ${groupName}
+                </h5>
+            `;
+            section.appendChild(sectionHeader);
 
             const row = document.createElement('div');
-            row.className = 'row';
+            row.className = 'row g-3';
 
             groups[groupName].forEach(field => {
                 const col = document.createElement('div');
@@ -311,21 +368,22 @@
                 group.className = 'mb-3';
 
                 const label = document.createElement('label');
-                label.textContent = field.label;
+                label.className = 'form-label fw-semibold';
+                label.innerHTML = `<i class="bi bi-${field.icon || 'input-cursor'} me-2 text-primary"></i>${field.label}`;
                 label.setAttribute('for', field.name);
                 group.appendChild(label);
 
                 let input;
                 if (field.type === 'select') {
                     input = document.createElement('select');
-                    input.className = 'form-select';
+                    input.className = 'form-select form-select-lg';
                     input.name = field.name;
                     input.required = !field.optional;
                     input.innerHTML = `<option value="">Select ${field.label}</option>` +
                         field.options.map(opt => `<option value="${opt}">${opt}</option>`).join('');
                 } else if (field.type === 'city') {
                     input = document.createElement('select');
-                    input.className = 'form-select';
+                    input.className = 'form-select form-select-lg';
                     input.name = field.name;
                     input.required = true;
                     input.id = 'citySelect';
@@ -345,22 +403,31 @@
                     });
                 } else if (field.type === 'area') {
                     input = document.createElement('select');
-                    input.className = 'form-select';
+                    input.className = 'form-select form-select-lg';
                     input.name = field.name;
                     input.required = true;
                     input.id = 'areaSelect';
                 } else {
                     input = document.createElement('input');
                     input.type = field.type || 'text';
-                    input.className = 'form-control';
+                    input.className = 'form-control form-control-lg';
                     input.name = field.name;
                     input.required = !field.optional;
+                    input.placeholder = `Enter ${field.label.toLowerCase()}`;
                 }
+
+                // Add focus and blur effects
+                input.addEventListener('focus', function () {
+                    this.parentNode.classList.add('border-primary');
+                });
+                input.addEventListener('blur', function () {
+                    this.parentNode.classList.remove('border-primary');
+                });
 
                 group.appendChild(input);
                 const invalid = document.createElement('div');
                 invalid.className = 'invalid-feedback';
-                invalid.innerText = `Please provide ${field.label.toLowerCase()}.`;
+                invalid.innerHTML = `<i class="bi bi-exclamation-circle me-2"></i>Please provide ${field.label.toLowerCase()}.`;
                 group.appendChild(invalid);
 
                 col.appendChild(group);
@@ -369,19 +436,45 @@
 
             section.appendChild(row);
             formSections.appendChild(section);
+            sectionIndex++;
         }
 
-        document.getElementById('tuitionForm').addEventListener('submit', async function (e) {
-            e.preventDefault();
-            const form = e.target;
-            form.classList.add('was-validated');
+        const form = document.getElementById('tuitionForm');
+        const progressBar = document.getElementById('formProgress');
+        const inputs = form.querySelectorAll('input[required], select[required]');
 
-            if (!form.checkValidity()) {
+        function updateProgress() {
+            let filledFields = 0;
+            inputs.forEach(input => {
+                if (input.value.trim() !== '') {
+                    filledFields++;
+                }
+            });
+            const progress = (filledFields / inputs.length) * 100;
+            progressBar.style.width = progress + '%';
+        }
+
+        inputs.forEach(input => {
+            input.addEventListener('input', updateProgress);
+            input.addEventListener('change', updateProgress);
+        });
+
+        form.addEventListener('submit', async function (e) {
+            e.preventDefault();
+            const formElement = e.target;
+            formElement.classList.add('was-validated');
+
+            if (!formElement.checkValidity()) {
                 return;
             }
 
+            const submitBtn = formElement.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="bi bi-hourglass-split me-2"></i>Submitting...';
+            submitBtn.disabled = true;
+
             const formData = {};
-            for (const element of form.elements) {
+            for (const element of formElement.elements) {
                 if (element.name && !element.disabled) {
                     formData[element.name] = element.value.trim();
                 }
@@ -396,19 +489,21 @@
 
                 if (res.ok) {
                     const myModal = new bootstrap.Modal(document.getElementById('successModal'));
-                    form.reset();
-                    form.classList.remove('was-validated');
-
+                    formElement.reset();
+                    formElement.classList.remove('was-validated');
                     document.getElementById('areaSelect').innerHTML = '<option value="">Select Area</option>';
+                    progressBar.style.width = '0%';
                     myModal.show();
                 } else {
                     alert('Error submitting application');
                 }
             } catch (error) {
                 alert('Network error: ' + error.message);
+            } finally {
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
             }
         });
-
     </script>
 </body>
 
