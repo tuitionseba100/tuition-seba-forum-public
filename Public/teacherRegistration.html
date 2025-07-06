@@ -265,6 +265,41 @@
         </div>
     </div>
 
+    <div class="modal fade" id="errorModal" tabindex="-1" aria-labelledby="errorModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-danger">
+                <div class="modal-header bg-danger text-white">
+                    <h5 class="modal-title" id="errorModalLabel">
+                        <i class="bi bi-exclamation-triangle me-2"></i>আবেদন ব্যর্থ হয়েছে
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <div class="mb-3">
+                        <i class="bi bi-x-circle-fill text-danger" style="font-size: 4rem;"></i>
+                    </div>
+                    <h5 id="errorModalMessage" class="text-danger"></h5>
+                    <p class="text-muted mt-3 mb-0" style="font-size: 0.95rem; line-height: 1.4;">
+                        অনুগ্রহ করে উপরের তথ্য সঠিকভাবে পূরণ করে পুনরায় চেষ্টা করুন।
+                        <br>
+                        যদি কোনো সমস্যা হয়, আমাদের টিমের সাথে যোগাযোগ করুন:
+                        <a href="tel:+8801540376020" class="text-decoration-none fw-semibold text-primary"
+                            style="margin-left: 4px;">
+                            <i class="bi bi-telephone-fill me-1"></i>01540-376020
+                        </a>
+                    </p>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
+                        <i class="bi bi-x-circle me-2"></i>Close
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
@@ -491,16 +526,37 @@
                     document.getElementById('areaSelect').innerHTML = '<option value="">Select Area</option>';
                     progressBar.style.width = '0%';
                     myModal.show();
+                } else if (res.status === 400) {
+                    const data = await res.json();
+
+                    const fieldMap = {
+                        phone: 'ফোন নাম্বার',
+                        alternativePhone: 'Alternative  ফোন নাম্বার',
+                        whatsapp: 'হোয়াটসঅ্যাপ নাম্বার'
+                    };
+
+                    const duplicateNames = (data.duplicates || [])
+                        .map(field => fieldMap[field] || field)
+                        .join(', ');
+
+                    const fullMessage = duplicateNames
+                        ? `একই ${duplicateNames} দিয়ে ইতোমধ্যে আবেদন করা হয়েছে।`
+                        : data.message || 'একই তথ্য দিয়ে ইতোমধ্যে আবেদন করা হয়েছে।';
+
+                    document.getElementById('errorModalMessage').textContent = fullMessage;
+                    const errorModal = new bootstrap.Modal(document.getElementById('errorModal'));
+                    errorModal.show();
                 } else {
-                    alert('Error submitting application');
+                    alert('আবেদন জমা দিতে সমস্যা হয়েছে। অনুগ্রহ করে আবার চেষ্টা করুন।');
                 }
             } catch (error) {
-                alert('Network error: ' + error.message);
+                alert('নেটওয়ার্ক ত্রুটি: ' + error.message);
             } finally {
                 submitBtn.innerHTML = originalText;
                 submitBtn.disabled = false;
             }
         });
+
     </script>
 </body>
 
