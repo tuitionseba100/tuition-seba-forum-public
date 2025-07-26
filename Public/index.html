@@ -1203,7 +1203,7 @@
             <div class="card-footer bg-light text-center">
                 <button
                     class="btn btn-primary btn-sm px-4 py-2 rounded-pill button-hover"
-                     onclick='openApplyModal(${JSON.stringify(tuition)})'
+                    onclick='handleApplyClick(${JSON.stringify(tuition)})'
                 >
                     <i class="fas fa-paper-plane me-2"></i>Apply Now
                 </button>
@@ -1274,12 +1274,20 @@
             paginationContainer.appendChild(paginationList);
         }
 
-        /*function redirectToWhatsApp(tuitionCode) {
-        const phoneNumber = '+8801540376020';
-        const tuitionDetails = tuitions.find(tuition => tuition.tuitionCode === tuitionCode);
-        const area = tuitionDetails.area ? tuitionDetails.area : '';
-        if (tuitionDetails) {
-            const message = `
+        function handleApplyClick(tuition) {
+            if (tuition.isWhatsappApply) {
+                redirectToWhatsApp(tuition.tuitionCode);
+            } else {
+                openApplyModal(tuition);
+            }
+        }
+
+        function redirectToWhatsApp(tuitionCode) {
+            const phoneNumber = '+8801540376020';
+            const tuitionDetails = tuitions.find(tuition => tuition.tuitionCode === tuitionCode);
+            const area = tuitionDetails.area ? tuitionDetails.area : '';
+            if (tuitionDetails) {
+                const message = `
 Tuition Code: ${tuitionDetails.tuitionCode}
 Wanted Teacher: ${tuitionDetails.wantedTeacher}
 Number of Students: ${tuitionDetails.student}
@@ -1294,12 +1302,11 @@ Joining: ${tuitionDetails.joining}
 
 এই টিউশনটা (${tuitionDetails.tuitionCode}) কি এখনো আছে?`.trim();
 
-            const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-            window.open(url, '_blank');
+                const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+                window.open(url, '_blank');
+            }
         }
-        }
-        
-*/
+
         let allApllications = [];
         document.getElementById('phoneSearch').addEventListener('input', function () {
             const phoneNumber = this.value.trim();
